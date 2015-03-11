@@ -7,5 +7,10 @@ public class CarlsCorner {
 		int x = 5, y = 6;
 		System.out.println(x*y);
 	}
+	
+	public static void fisse(String[] fisseargumenter) {
+		int x = 5, y = 6;
+		System.out.println(x*y);
+	}
 
 }
