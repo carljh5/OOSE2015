@@ -12,5 +12,9 @@ public class test {
 		}
 		System.out.println(num);
 	}
+	
+	public static void test() {
+		// This is a test
+	}
 
 }
