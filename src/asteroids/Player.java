@@ -42,6 +42,11 @@ public class Player extends SpaceObject {
 		align.y = (float)(Math.sin(0.1f));
 		alignment(0.1f);
 	}
+	
+	public void shoot() {
+		//spawnBullet(getX(), getY(), radians);
+		System.out.println("spawnBullet(" + getX() + ", " + getY() + ", " + radians +")");
+	}
 
 
 }

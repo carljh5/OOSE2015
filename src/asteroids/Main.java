@@ -1,4 +1,5 @@
 package asteroids;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -12,6 +13,8 @@ import org.newdawn.slick.SlickException;
 public class Main extends BasicGame
 {
 	public Player carl = new Player();
+	public Asteroid ast = new Asteroid(1);
+	ArrayList<Shot> bullets = new ArrayList<Shot>();
 	
 	public Main(String gamename)
 	{
@@ -25,12 +28,20 @@ public class Main extends BasicGame
 
 	@Override
 	public void update(GameContainer gc, int i) throws SlickException {
+			
+		if(gc.getInput().isKeyPressed(Input.KEY_SPACE)){
+			bullets.add(new Shot(carl.getX(), carl.getY(), carl.radians));
+			System.out.println(carl.getX());
+		}
 		if(gc.getInput().isKeyDown(Input.KEY_UP))
 			carl.thrust();
 		if(gc.getInput().isKeyDown(Input.KEY_LEFT))
 			carl.rotateLeft();
 		if(gc.getInput().isKeyDown(Input.KEY_RIGHT))
 			carl.rotateRight();
+		for(Shot s : bullets) {
+			s.move();
+		}
 		carl.move();
 	}
 
@@ -38,8 +49,10 @@ public class Main extends BasicGame
 	public void render(GameContainer gc, Graphics g) throws SlickException
 	{
 		g.draw(carl.getShape());
-		
-		
+		for(Shot s : bullets) {
+			g.draw(s.getShape());
+		}
+		g.draw(ast.getShape());
 		
 		
 	}

@@ -7,27 +7,33 @@ import org.newdawn.slick.geom.Vector2f;
 public class SpaceObject {
 	protected Vector2f direction = new Vector2f(0,0);
 	protected Shape shape;
+	protected float speed = 0.1f;
 	
 	/**
 	 * Used to get the shape object for rendering.
 	 * @return Returns the Shape object
 	 */
-	
 	public Shape getShape() {
 		return shape;
-		
 	}
 	
 	/**
 	 * Sets the moving direction and speed of the object.
 	 * @param rads The direction of the movement in radians.
 	 */
-	
 	public void setDirection(float rads) {
-		direction.x += (float) Math.cos(rads)*0.1f;
-		direction.y += (float) Math.sin(rads)*0.1f;
+		direction.x += (float) Math.cos(rads)*speed;
+		direction.y += (float) Math.sin(rads)*speed;
 	}
-
+	
+	/**
+	 * Sets the speed of the objects
+	 * @param s
+	 */
+	public void setSpeed(float s) {
+		speed = s;
+	}
+	
 	/**
 	 * Rotates the object Shape.
 	 * @param rads Rotation in radians.
