@@ -7,9 +7,9 @@ public class GameMaster {
 	
 	public int height;
 	public int width;
-	public SpaceObject object = new SpaceObject();
+	//public SpaceObject object = new SpaceObject();
 	
-	public void initialize(GameContainer gcon) {
+	public GameMaster(GameContainer gcon) {
 		width = gcon.getWidth();
 		height = gcon.getHeight();
 	}
@@ -22,7 +22,7 @@ public class GameMaster {
 		return width;
 	}
 	
-	void mirror() {
+	public void mirror(SpaceObject object) {
 		if (object.getX() < 0) {
 			object.setX(width);
 		} 
@@ -34,8 +34,7 @@ public class GameMaster {
 		} 
 		if (object.getY() > height) {
 			object.setY(0);
-		}
-		
+		}	
 	}
 
 }
