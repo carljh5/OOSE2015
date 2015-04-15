@@ -16,17 +16,17 @@ public class ObjectHandler {
 	}
 	void spawnUpate(){
 	  int spawnNum = 0;
-	  for (int i = 0; i<asteroids.size(); i++){
+	  for (Asteroid i : asteroids){
 	  
-		  if(asteroids(i).iscollide()){
-			if (asteroids(i).scale > 2) {
+		  if(i.isColliding(shape)){
+			if (i.scale > 2) {
 				spawnNum = 3;
 			}
-			else if (asteroids(i).scale > 1) {
+			else if (i.scale > 1) {
 				spawnNum = 5;
 			}
 			for (int j = 0; j<spawnNum; j++){
-				asteroids.add(new Asteroid(scale-1));
+				asteroids.add(new Asteroid(i.scale-1));
 			}
 			asteroids.remove(i);
 		}
