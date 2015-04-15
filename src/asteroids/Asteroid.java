@@ -4,10 +4,12 @@ import org.newdawn.slick.geom.Polygon;
 
 
 public class Asteroid extends SpaceObject {
+	int scale;
 	
 	public Asteroid(int scale) {
-		if(scale < 1)
-			scale = 1;
+		
+		this.scale = scale;
+		
 		float[] points = {0,0,5,20,30,10,25,-20,10,-12};
 		for(float p : points) {
 			p = p*scale;
