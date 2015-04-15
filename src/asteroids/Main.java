@@ -27,6 +27,8 @@ public class Main extends BasicGame
 	
 	@Override
 	public void update(GameContainer gc, int i) throws SlickException {
+		
+		objecthandler.runObject();
 			
 		if(gc.getInput().isKeyPressed(Input.KEY_SPACE)){
 			objecthandler.bullets.add(new Shot(carl.getX(), carl.getY(), carl.radians));
@@ -51,7 +53,8 @@ public class Main extends BasicGame
 		for(Shot s : objecthandler.bullets) {
 			g.draw(s.getShape());
 		}
-		g.draw(ast.getShape());
+		for(Asteroid a : objecthandler.asteroids)
+			g.draw(a.getShape());
 		
 		
 	}
