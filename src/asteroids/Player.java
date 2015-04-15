@@ -8,10 +8,11 @@ public class Player extends SpaceObject {
 	Vector2f align = new Vector2f(0,0);
 	float radians;
 	
+	
 	public Player() {
 		float[] points = {0, -5, 20, 0, 0, 5};
 		shape = new Polygon(points);
-		shape.setCenterX(320);
+		shape.setCenterX(360);
 		shape.setCenterY(240);
 	}
 	

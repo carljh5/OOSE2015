@@ -14,6 +14,7 @@ public class Main extends BasicGame
 {
 	public Player carl = new Player();
 	public Asteroid ast = new Asteroid(1);
+	public SpaceObject space = new SpaceObject();
 	ArrayList<Shot> bullets = new ArrayList<Shot>();
 	
 	public Main(String gamename)
@@ -31,7 +32,6 @@ public class Main extends BasicGame
 			
 		if(gc.getInput().isKeyPressed(Input.KEY_SPACE)){
 			bullets.add(new Shot(carl.getX(), carl.getY(), carl.radians));
-			System.out.println(carl.getX());
 		}
 		if(gc.getInput().isKeyDown(Input.KEY_UP))
 			carl.thrust();
@@ -43,6 +43,10 @@ public class Main extends BasicGame
 			s.move();
 		}
 		carl.move();
+		
+		if (carl.intersects(ast)){
+			System.out.println("HEJ");
+		}
 	}
 
 	@Override
@@ -52,9 +56,7 @@ public class Main extends BasicGame
 		for(Shot s : bullets) {
 			g.draw(s.getShape());
 		}
-		g.draw(ast.getShape());
-		
-		
+		g.draw(ast.getShape());	
 	}
 
 	public static void main(String[] args)
