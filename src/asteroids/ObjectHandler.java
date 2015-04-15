@@ -8,39 +8,49 @@ public class ObjectHandler {
 	public ArrayList<Asteroid> asteroids = new ArrayList<Asteroid>();
 	public ArrayList<Shot> bullets = new ArrayList<Shot>();
 	
+	
 	public ObjectHandler(){
 		
 	}
 	
+	public void runObject() {
+		spawnNew(1);
+		spawnUpdate();
+	}
+	
 	//Is called when the level is empty / completed
 	public void spawnNew(int level){
-		for(int i = 0; i<level+1; i++){
-			asteroids.add(new Asteroid(3));	
-		}
+		if (newLevel)
+			for(int i = 0; i<level+1; i++)
+				asteroids.add(new Asteroid(3));			
 	}
 	
 	//Is called when the level is NOT empty / completed
-	public void spawnUpate(){
+	public void spawnUpdate(){
 	  if (asteroids.size() > 0){
 		  newLevel = false;
+		  Asteroid asteroidRemove = null;
+		  Shot bulletRemove = null;
 		  for (Asteroid i : asteroids){
 			  int spawnNum = 0;
 			  for (Shot j : bullets){
 				  if(i.isColliding(j.getShape())){
-						if (i.scale > 2) {
-							spawnNum = 3;
-						}
-						else if (i.scale > 1) {
+					  asteroidRemove = i;
+					  bulletRemove = j;
+						if (i.scale > 2) 
+							spawnNum = 3;		
+						else if (i.scale > 1) 
 							spawnNum = 5;
-						}
-						for (int k = 0; k<spawnNum; k++){
+						for (int k = 0; k<spawnNum; k++)
 							asteroids.add(new Asteroid(i.scale-1));
-							asteroids.remove(i);
-						}
 						break;
 				  }
 			  }
 		  }
+		  if (asteroidRemove != null)
+			  asteroids.remove(asteroidRemove);
+		  if (bulletRemove != null)
+			  bullets.remove(bulletRemove);
 	  }
 	  else
 		  newLevel = true;
