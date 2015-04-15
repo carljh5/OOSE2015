@@ -27,7 +27,7 @@ public class Main extends BasicGame
 	public void init(GameContainer gc) throws SlickException {
 		game = new GameMaster(gc);
 	}
-
+	
 	@Override
 	public void update(GameContainer gc, int i) throws SlickException {
 			

@@ -92,10 +92,18 @@ public class SpaceObject {
 	/**
 	 * Translates the object's transform.
 	 */
-	
 	public void move() {
 		shape = shape.transform(Transform.createTranslateTransform(direction.x, direction.y));
 	}
 	
+	/**
+	 * Checks if this object intersects with another object.
+	 * @param object
+	 * @return Returns true if the shapes intersects.
+	 */
+	
+	public boolean isColliding(Shape object) {
+		return getShape().intersects(object);
+	}
 
 }
