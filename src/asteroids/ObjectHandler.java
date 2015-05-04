@@ -4,35 +4,56 @@ import java.util.ArrayList;
 
 public class ObjectHandler {
 	
-	boolean newLevel;
-
-	protected ArrayList<Asteroid> asteroids = new ArrayList<Asteroid>();
+	public boolean newLevel;
+	public ArrayList<Asteroid> asteroids = new ArrayList<Asteroid>();
+	public ArrayList<Shot> bullets = new ArrayList<Shot>();
 	
-	//Should be called when the level is empty
-	void spawnNew(int level){
-		for(int i = 0; i<level+1; i++){
-			asteroids.add(new Asteroid(3));	
-		}
+	public ObjectHandler(){
+		
 	}
-	void spawnUpate(){
-	  int spawnNum = 0;
-	  for (Asteroid i : asteroids){
-	  
-		  if(i.isColliding(shape)){
-			if (i.scale > 2) {
-				spawnNum = 3;
-			}
-			else if (i.scale > 1) {
-				spawnNum = 5;
-			}
-			for (int j = 0; j<spawnNum; j++){
-				asteroids.add(new Asteroid(i.scale-1));
-			}
-			asteroids.remove(i);
-		}
+	
+	public void runObject() {
+		spawnNew(1);
+		spawnUpdate();
+		System.out.println(asteroids.size());
+	}
+	
+	//Is called when the level is empty / completed
+	public void spawnNew(int level){
+		if (newLevel)
+			for(int i = 0; i<level+1; i++)
+				asteroids.add(new Asteroid(3));			
+	}
+	
+	//Is called when the level is NOT empty / completed
+	public void spawnUpdate(){
+	  if (asteroids.size() > 0){
+		  newLevel = false;
+		  Asteroid asteroidRemove = null;
+		  Shot bulletRemove = null;
+		  int spawnNum = 0;
+		  for (Asteroid i : asteroids){
+			  for (Shot j : bullets){
+				  if(i.isColliding(j.getShape())){
+					  asteroidRemove = i;
+					  bulletRemove = j;
+						if (i.scale > 2) 
+							spawnNum = 3;		
+						else if (i.scale > 1) 
+							spawnNum = 5;
+						break;
+				  }
+			  }
+			  if (bulletRemove != null)
+				  bullets.remove(bulletRemove);
+		  }
+		  for (int k = 0; k<spawnNum; k++)
+			  asteroids.add(new Asteroid(asteroidRemove.scale-1));
+		  if (asteroidRemove != null)
+			  asteroids.remove(asteroidRemove);
+
 	  }
-	  if (asteroids.size() == 0)
+	  else
 		  newLevel = true;
 	}	
-
 }

@@ -8,7 +8,6 @@ public class Asteroid extends SpaceObject {
 	
 	public Asteroid(int scale) {
 
-		
 		this.scale = scale;
 		
 		float[] points = {0,0,5,20,30,10,25,-20,10,-12};
