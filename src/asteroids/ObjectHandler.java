@@ -7,6 +7,8 @@ public class ObjectHandler {
 	public boolean newLevel;
 	public ArrayList<Asteroid> asteroids = new ArrayList<Asteroid>();
 	public ArrayList<Shot> bullets = new ArrayList<Shot>();
+	public Player carl = new Player();
+
 	
 	public ObjectHandler(){
 		
@@ -55,6 +57,71 @@ public class ObjectHandler {
 	  }
 	  else
 		  newLevel = true;
+	}
+	
+	/**
+	 * 
+	 * Mirrors the Spaceobject
+	 */
+	public void mirror(SpaceObject object) {
+		if (object.getX() < 0) {
+			object.setX(GameMaster.getWidth());
+			//mirrorLimit++;
+			if(object.getClass().getName().contains("Shot")) {
+				object.mirrorLimit++;
+			}
+		} 
+		if (object.getY() < 0) {
+			object.setY(GameMaster.getHeight());
+			//mirrorLimit++;
+			if(object.getClass().getName().contains("Shot")) {
+				object.mirrorLimit++;
+			}
+		} 
+		if (object.getX() > GameMaster.getWidth()) {
+			object.setX(0);
+			//mirrorLimit++;
+			if(object.getClass().getName().contains("Shot")) {
+				object.mirrorLimit++;
+			}
+		} 
+		if (object.getY() > GameMaster.getHeight()) {
+			object.setY(0);
+			//mirrorLimit++;
+			if(object.getClass().getName().contains("Shot")) {
+				object.mirrorLimit++;
+			}
+		}	
+	}
+	
+	/**
+	 * 
+	 * Makes sure that the shots fired will decay
+	 */
+	public boolean shotDecay (SpaceObject object) {
+		if (object.mirrorLimit > 2) {
+			object.mirrorLimit = 0;
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public void updateMirror() {
+		Shot bullet = null;
+		for (Shot s : bullets) {
+			bullet = s;
+			mirror(s);
+		}
+		
+		if (bullet != null && shotDecay(bullet)) {
+			bullets.remove(bullet);
+		}
+		Asteroid ast = null;
+		for (Asteroid a : asteroids) {
+			ast = a;
+			mirror(a);
+		}
 	}
 	
 }

@@ -9,7 +9,9 @@ public class SpaceObject {
 	protected Vector2f direction = new Vector2f(0,0);
 	protected Shape shape;
 	protected float speed = 0.1f;
-	private Shape boundingBox;
+	private Shape boundingBox;	
+	public int mirrorLimit = 0;
+
 	
 	/**
 	 * Used to get the shape object for rendering.
