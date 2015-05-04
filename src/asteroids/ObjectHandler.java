@@ -22,7 +22,7 @@ public class ObjectHandler {
 	public void spawnNew(int level){
 		if (newLevel)
 			for(int i = 0; i<level+1; i++)
-				asteroids.add(new Asteroid(3));			
+				asteroids.add(new Asteroid(3, (float)(2*Math.PI/(level+1))*i));			
 	}
 	
 	//Is called when the level is NOT empty / completed
@@ -48,12 +48,13 @@ public class ObjectHandler {
 				  bullets.remove(bulletRemove);
 		  }
 		  for (int k = 0; k<spawnNum; k++)
-			  asteroids.add(new Asteroid(asteroidRemove.scale-1));
+			  asteroids.add(new Asteroid(asteroidRemove.scale-1, (float)(2*Math.PI/(spawnNum))*k));
 		  if (asteroidRemove != null)
 			  asteroids.remove(asteroidRemove);
 
 	  }
 	  else
 		  newLevel = true;
-	}	
+	}
+	
 }
