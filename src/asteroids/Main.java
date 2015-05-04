@@ -43,6 +43,9 @@ public class Main extends BasicGame
 		for(Shot s : objecthandler.bullets) {
 			s.move();
 		}
+		for(Asteroid a : objecthandler.asteroids) {
+			a.move();
+		}
 		carl.move();
 	}
 
