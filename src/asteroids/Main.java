@@ -1,5 +1,6 @@
 package asteroids;
 
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,13 +15,10 @@ public class Main extends BasicGame
 {
 	public ObjectHandler objecthandler = new ObjectHandler();
 	public Player carl = new Player();
-<<<<<<< HEAD
 	public Asteroid ast = new Asteroid(1);
 	public SpaceObject space = new SpaceObject();
 	public GameMaster game;
 	ArrayList<Shot> bullets = new ArrayList<Shot>();
-=======
->>>>>>> origin/master
 	
 	public Main(String gamename)
 	{
@@ -38,12 +36,9 @@ public class Main extends BasicGame
 		objecthandler.runObject();
 			
 		if(gc.getInput().isKeyPressed(Input.KEY_SPACE)){
-<<<<<<< HEAD
 			bullets.add(new Shot(carl.getX(), carl.getY(), carl.radians));
-=======
 			objecthandler.bullets.add(new Shot(carl.getX(), carl.getY(), carl.radians));
 			System.out.println(carl.getX());
->>>>>>> origin/master
 		}
 		if(gc.getInput().isKeyDown(Input.KEY_UP))
 			carl.thrust();
@@ -73,16 +68,16 @@ public class Main extends BasicGame
 		
 		// Finde plads til mirror
 		game.mirror(carl);
-		Shot bla = null;
-		for(Shot s : bullets) {
-			bla = s;
-			game.mirror(s);
-		}
-		if (bla != null) {
-			if (game.shotDecay(bla)) {
-				bullets.remove(bla);
-			}
-		}
+//		Shot bla = null;
+//		for(Shot s : bullets) {
+//			bla = s;
+//			game.mirror(s);
+//		}
+//		if (bla != null) {
+//			if (game.shotDecay(bla)) {
+//				bullets.remove(bla);
+//			}
+//		}
 		
 	}
 
