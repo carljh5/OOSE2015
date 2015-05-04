@@ -1,6 +1,7 @@
 package asteroids;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class ObjectHandler {
 	
@@ -15,7 +16,6 @@ public class ObjectHandler {
 	public void runObject() {
 		spawnNew(1);
 		spawnUpdate();
-		System.out.println(asteroids.size());
 	}
 	
 	//Is called when the level is empty / completed
@@ -37,18 +37,25 @@ public class ObjectHandler {
 				  if(i.isColliding(j.getShape())){
 					  asteroidRemove = i;
 					  bulletRemove = j;
-						if (i.scale > 2) 
-							spawnNum = 3;		
-						else if (i.scale > 1) 
-							spawnNum = 5;
-						break;
+					  if (i.scale > 2) 
+						  spawnNum = 3;		
+					  else if (i.scale > 1) 
+						  spawnNum = 5;
+					  break;
 				  }
 			  }
 			  if (bulletRemove != null)
 				  bullets.remove(bulletRemove);
 		  }
-		  for (int k = 0; k<spawnNum; k++)
+		  for (int k = 0; k<spawnNum; k++){
 			  asteroids.add(new Asteroid(asteroidRemove.scale-1));
+			  asteroids.get(asteroids.size()-1).setSpeed(50);
+			  Random rand = new Random();
+			  float ranNum = rand.nextFloat();
+			  float degree = (float) ((ranNum*2*Math.PI/spawnNum)+(k*2*Math.PI/spawnNum));
+			  asteroids.get(asteroids.size()-1).setDirection(degree);
+		  }
+
 		  if (asteroidRemove != null)
 			  asteroids.remove(asteroidRemove);
 
