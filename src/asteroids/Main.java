@@ -62,17 +62,7 @@ public class Main extends BasicGame
 			g.draw(a.getShape());
 		
 		// Finde plads til mirror
-		/*game.mirror(carl);
-		Shot bla = null;
-		for(Shot s : bullets) {
-			bla = s;
-			game.mirror(s);
-		}
-		if (bla != null) {
-			if (game.shotDecay(bla)) {
-				bullets.remove(bla);
-			}
-		}*/
+		// FEST
 		
 	}
 
