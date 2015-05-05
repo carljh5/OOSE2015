@@ -14,6 +14,7 @@ public class Main extends BasicGame
 {
 	public ObjectHandler objecthandler = new ObjectHandler();
 	public Player carl = new Player();
+	public GameMaster game;
 	
 	public Main(String gamename)
 	{
@@ -22,7 +23,7 @@ public class Main extends BasicGame
 	
 	@Override
 	public void init(GameContainer gc) throws SlickException {
-
+		game = new GameMaster(gc);
 	}
 	
 	@Override
@@ -43,7 +44,11 @@ public class Main extends BasicGame
 		for(Shot s : objecthandler.bullets) {
 			s.move();
 		}
+		for(Asteroid a : objecthandler.asteroids) {
+			a.move();
+		}
 		carl.move();
+		
 	}
 
 	@Override
@@ -56,6 +61,18 @@ public class Main extends BasicGame
 		for(Asteroid a : objecthandler.asteroids)
 			g.draw(a.getShape());
 		
+		// Finde plads til mirror
+		/*game.mirror(carl);
+		Shot bla = null;
+		for(Shot s : bullets) {
+			bla = s;
+			game.mirror(s);
+		}
+		if (bla != null) {
+			if (game.shotDecay(bla)) {
+				bullets.remove(bla);
+			}
+		}*/
 		
 	}
 
