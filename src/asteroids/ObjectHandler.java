@@ -9,6 +9,7 @@ public class ObjectHandler {
 	public ArrayList<Asteroid> asteroids = new ArrayList<Asteroid>();
 	public ArrayList<Shot> bullets = new ArrayList<Shot>();
 	public Player carl = new Player();
+	public int level = 1;
 
 	
 	public ObjectHandler(){
@@ -16,15 +17,15 @@ public class ObjectHandler {
 	}
 	
 	public void runObject() {
-		spawnNew(1);
+		spawnNew();
 		spawnUpdate();
 		System.out.println(asteroids.size());
 	}
 	
 	//Is called when the level is empty / completed
-	public void spawnNew(int level){
+	public void spawnNew(){
 		if (newLevel)
-			for(int i = 0; i<level+1; i++)
+			for(int i = 0; i<level; i++)
 				asteroids.add(new Asteroid(3, (float)(2*Math.PI/(level+1))*i));			
 	}
 	
@@ -61,8 +62,10 @@ public class ObjectHandler {
 			  bullets.remove(bulletRemove);
 
 	  }
-	  else
+	  else{
 		  newLevel = true;
+		  level++;
+	  }
 	}
 	
 	/**
