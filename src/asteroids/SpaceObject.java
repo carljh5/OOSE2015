@@ -8,8 +8,7 @@ import org.newdawn.slick.geom.Vector2f;
 public class SpaceObject {
 	protected Vector2f direction = new Vector2f(0,0);
 	protected Shape shape;
-	protected float speed = 0.1f;
-	private Shape boundingBox;	
+	protected float speed = 0.1f;	
 	public int mirrorLimit = 0;
 
 	
@@ -19,21 +18,6 @@ public class SpaceObject {
 	 */
 	public Shape getShape() {
 		return shape;
-	}
-	
-	/**
-	 * Used to know when entity is in collision
-	 * @return Returns the bounding box object
-	 */
-	public Shape getBoundingbox() {
-		return this.boundingBox;
-	}
-	
-	public boolean intersects(SpaceObject entity){
-		if (this.getBoundingbox() == null){
-			return false;
-		}
-		return this.getBoundingbox().intersects(entity.getBoundingbox());
 	}
 	
 	/**
@@ -100,13 +84,16 @@ public class SpaceObject {
 	}
 	
 	/**
-	 * Checks if this object intersects with another object.
-	 * @param object
-	 * @return Returns true if the shapes intersects.
+	 * Checks if this object intersects or is inside another object.
+	 * @param object The Shape to be compared to.
+	 * @return Returns true if the shapes intersects or is inside another object.
 	 */
 	
 	public boolean isColliding(Shape object) {
-		return getShape().intersects(object);
+		if (getShape().intersects(object) || getShape().contains(object))
+			return true;
+		else
+			return false;
 	}
 
 }

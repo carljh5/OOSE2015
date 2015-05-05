@@ -45,14 +45,14 @@ public class ObjectHandler {
 							spawnNum = 5;
 						break;
 				  }
-			  }
-			  if (bulletRemove != null)
-				  bullets.remove(bulletRemove);
+			  } 
 		  }
 		  for (int k = 0; k<spawnNum; k++)
 			  asteroids.add(new Asteroid(asteroidRemove.scale-1, (float)(2*Math.PI/(spawnNum))*k));
 		  if (asteroidRemove != null)
 			  asteroids.remove(asteroidRemove);
+		  if (bulletRemove != null)
+			  bullets.remove(bulletRemove);
 
 	  }
 	  else
@@ -63,31 +63,27 @@ public class ObjectHandler {
 	 * 
 	 * Mirrors the Spaceobject
 	 */
-	public void mirror(SpaceObject object) {
+	private void mirror(SpaceObject object) {
 		if (object.getX() < 0) {
 			object.setX(GameMaster.getWidth());
-			//mirrorLimit++;
 			if(object.getClass().getName().contains("Shot")) {
 				object.mirrorLimit++;
 			}
 		} 
 		if (object.getY() < 0) {
 			object.setY(GameMaster.getHeight());
-			//mirrorLimit++;
 			if(object.getClass().getName().contains("Shot")) {
 				object.mirrorLimit++;
 			}
 		} 
 		if (object.getX() > GameMaster.getWidth()) {
 			object.setX(0);
-			//mirrorLimit++;
 			if(object.getClass().getName().contains("Shot")) {
 				object.mirrorLimit++;
 			}
 		} 
 		if (object.getY() > GameMaster.getHeight()) {
 			object.setY(0);
-			//mirrorLimit++;
 			if(object.getClass().getName().contains("Shot")) {
 				object.mirrorLimit++;
 			}
@@ -98,8 +94,8 @@ public class ObjectHandler {
 	 * 
 	 * Makes sure that the shots fired will decay
 	 */
-	public boolean shotDecay (SpaceObject object) {
-		if (object.mirrorLimit > 2) {
+	private boolean shotDecay (SpaceObject object) {
+		if (object.mirrorLimit >= 2) {
 			object.mirrorLimit = 0;
 			return true;
 		} else {
@@ -110,18 +106,19 @@ public class ObjectHandler {
 	public void updateMirror() {
 		Shot bullet = null;
 		for (Shot s : bullets) {
-			bullet = s;
 			mirror(s);
+			if(shotDecay(s)) {
+				bullet = s;
+			}
 		}
-		
-		if (bullet != null && shotDecay(bullet)) {
+		if (bullet != null) {
 			bullets.remove(bullet);
+			
 		}
-		Asteroid ast = null;
 		for (Asteroid a : asteroids) {
-			ast = a;
 			mirror(a);
 		}
+		mirror(carl);
 	}
 	
 }

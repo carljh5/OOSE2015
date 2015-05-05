@@ -6,7 +6,8 @@ public final class GameMaster {
 	
 	private static int height;
 	private static int width;
-	//public SpaceObject object = new SpaceObject();
+	private static int score;
+	private static int life;	
 	
 	public static void setHeight(int _height) {
 		height = _height;
@@ -22,6 +23,22 @@ public final class GameMaster {
 	
 	public static int getWidth(){
 		return width;
+	}
+	
+	public static void setScore(int s) {
+		score += s;
+	}
+	
+	public static int getScore() {
+		return score;
+	}
+	
+	public static void setLife(int l) {
+		life = l;
+	}
+	
+	public static int getLife() {
+		return life;
 	}
 
 }

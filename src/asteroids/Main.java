@@ -61,7 +61,7 @@ public class Main extends BasicGame
 			g.draw(a.getShape());
 		
 	
-		objecthandler.mirror(objecthandler.carl);
+		//objecthandler.mirror(objecthandler.carl);
 		
 		objecthandler.updateMirror();
 		
