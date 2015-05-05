@@ -24,7 +24,10 @@ public class ObjectHandler {
 		System.out.println(asteroids.size());
 	}
 	
-	//Is called when the level is empty / completed
+	/**
+	 * 
+	 * Is called when the level is empty / completed
+	 */	
 	public void spawnNew(){
 		if (newLevel)
 			for(int i = 0; i<level; i++){
@@ -37,7 +40,10 @@ public class ObjectHandler {
 			}
 	}
 	
-	//Is called when the level is NOT empty / completed
+	/**
+	 * 
+	 * Is called when the level is NOT empty / completed
+	 */
 	public void spawnUpdate(){
 	  if (asteroids.size() > 0){
 		  newLevel = false;
@@ -87,6 +93,10 @@ public class ObjectHandler {
 	  spawnPlayer();
 	}
 	
+	/**
+	 * 
+	 * Method for spawning player
+	 */
 	private void spawnPlayer() {
 		for(Asteroid a : asteroids) {
 			if(!immune) {
@@ -101,7 +111,7 @@ public class ObjectHandler {
 
 	/**
 	 * 
-	 * Mirrors the Spaceobject
+	 * Mirrors a SpaceObject
 	 */
 	private void mirror(SpaceObject object) {
 		if (object.getX() < 0) {
@@ -143,6 +153,10 @@ public class ObjectHandler {
 		}
 	}
 	
+	/**
+	 * 
+	 * Updates the mirror method for bullets, player and asteroids
+	 */
 	public void updateMirror() {
 		Shot bullet = null;
 		for (Shot s : bullets) {
