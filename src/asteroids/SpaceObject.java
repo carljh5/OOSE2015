@@ -27,7 +27,7 @@ public class SpaceObject {
 	public void setDirection(float rads) {
 		direction.x += (float) Math.cos(rads)*speed;
 		direction.y += (float) Math.sin(rads)*speed;
-		System.out.println(direction.x + "   " + direction.y );
+		//System.out.println(direction.x + "   " + direction.y );
 	}
 	
 	/**

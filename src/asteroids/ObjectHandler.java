@@ -5,27 +5,23 @@ import java.util.Random;
 
 public class ObjectHandler {
 	
-	public boolean newLevel;
-	public ArrayList<Asteroid> asteroids = new ArrayList<Asteroid>();
-	public ArrayList<Shot> bullets = new ArrayList<Shot>();
-	public static Player carl = new Player();
-	public static boolean immune = false;
-	public float immuneTime = 0f;
-	public int level = 1;
+	private static boolean newLevel;
+	protected static ArrayList<Asteroid> asteroids = new ArrayList<Asteroid>();
+	protected static ArrayList<Shot> bullets = new ArrayList<Shot>();
+	protected static Player carl = new Player();
+	protected static float immuneTime = 0f;
+	private static int level = 1;
 
-	
-	public ObjectHandler(){
-		
-	}
 	
 	public void runObject() {
 		spawnNew();
 		spawnUpdate();
-		System.out.println(asteroids.size());
+		spawnPlayer();
+		updateMirror();
 	}
 	
 	//Is called when the level is empty / completed
-	public void spawnNew(){
+	private void spawnNew(){
 		if (newLevel)
 			for(int i = 0; i<level; i++){
 				Random rnd = new Random();
@@ -38,7 +34,7 @@ public class ObjectHandler {
 	}
 	
 	//Is called when the level is NOT empty / completed
-	public void spawnUpdate(){
+	private void spawnUpdate(){
 	  if (asteroids.size() > 0){
 		  newLevel = false;
 		  Asteroid asteroidRemove = null;
@@ -49,10 +45,16 @@ public class ObjectHandler {
 				  if(i.isColliding(j.getShape())){
 					  asteroidRemove = i;
 					  bulletRemove = j;
-						if (i.scale > 2) 
-							spawnNum = 3;		
-						else if (i.scale > 1) 
+						if (i.scale > 2) {
+							spawnNum = 3;
+						}
+						else if (i.scale > 1) {
 							spawnNum = 5;
+							
+						}
+						else {
+							spawnNum = 0;
+						}
 						break;
 				  }
 			  } 
@@ -74,24 +76,23 @@ public class ObjectHandler {
 		  level++;
 		  newLevel = true;
 	  }
-	  
-	  if (immuneTime > 2f) {
-		  immune = false;
-		  System.out.println("NOT IMMUNE");
-	  }
-	  else {
-		  immune = true;
-		  immuneTime += 0.01f;
-		  System.out.println("MEGA IMMUNE  " + immuneTime);
-	  }
-	  spawnPlayer();
+	}
+	
+	protected boolean isImmune() {
+		if (immuneTime > 2f) {
+			return false;
+		  }
+		  else {
+			  immuneTime += 0.005f;
+			  return true;
+		  }
 	}
 	
 	private void spawnPlayer() {
-		for(Asteroid a : asteroids) {
-			if(!immune) {
+		if(!isImmune()) {
+			for(Asteroid a : asteroids) {
 				if(a.isColliding(carl.getShape())) {
-					carl = new Player();
+					carl = new Player(carl.radians);
 					GameMaster.setLife(-1);
 					immuneTime = 0f;
 				}
@@ -143,7 +144,7 @@ public class ObjectHandler {
 		}
 	}
 	
-	public void updateMirror() {
+	private void updateMirror() {
 		Shot bullet = null;
 		for (Shot s : bullets) {
 			mirror(s);

@@ -1,19 +1,26 @@
 package asteroids;
 
 import org.newdawn.slick.geom.Polygon;
-import org.newdawn.slick.geom.Vector2f;
+
 
 public class Player extends SpaceObject {
 	
-	Vector2f align = new Vector2f(0,0);
 	float radians;
-	//float tempTime;
-	
+
 	public Player() {
 		float[] points = {0, -5, 20, 0, 0, 5};
 		shape = new Polygon(points);
-		shape.setCenterX(360);
-		shape.setCenterY(240);
+		shape.setCenterX(GameMaster.getWidth()/2 - shape.getWidth()/2);
+		shape.setCenterY(GameMaster.getHeight()/2 - shape.getHeight()/2);
+	}
+	
+	public Player(float align) {
+		float[] points = {0, -5, 20, 0, 0, 5};
+		shape = new Polygon(points);
+		shape.setCenterX(GameMaster.getWidth()/2 - shape.getWidth()/2);
+		shape.setCenterY(GameMaster.getHeight()/2 - shape.getHeight()/2);
+		alignment(align);
+		radians = align;
 	}
 	
 	/**
@@ -28,8 +35,6 @@ public class Player extends SpaceObject {
 	 */
 	public void rotateLeft() {
 		radians += -0.1f;
-		align.x = (float)(Math.cos(-0.1f));
-		align.y = (float)(Math.sin(-0.1f));
 		alignment(-0.1f);
 		
 	}
@@ -39,19 +44,8 @@ public class Player extends SpaceObject {
 	 */
 	public void rotateRight() {
 		radians += 0.1f;
-		align.x = (float)(Math.cos(0.1f));
-		align.y = (float)(Math.sin(0.1f));
 		alignment(0.1f);
 	}
-	
-	/*public void respawn() {
-		tempTime = (float)System.currentTimeMillis();
-		
-	}*/
-	/*public void shoot() {
-		//spawnBullet(getX(), getY(), radians);
-		System.out.println("spawnBullet(" + getX() + ", " + getY() + ", " + radians +")");
-	}*/
 
 
 }

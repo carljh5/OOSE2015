@@ -9,21 +9,25 @@ public class GUI extends ObjectHandler {
 		
 	}
 	
-	public void drawScore(Graphics grph) {
+	public void drawContent(Graphics grph) {
+		drawScore(grph);
+		drawPlayer(grph);
+		drawSpaceObjects(grph);
+	}
+	
+	private void drawScore(Graphics grph) {
 		grph.drawString("SCORE : " + Integer.toString(GameMaster.getScore()), 0, 0);
 		grph.drawString("SHIPS : " + Integer.toString(GameMaster.getLife()), GameMaster.getWidth()-100, 0);
 	}
 	
-	public void drawPlayer(Graphics grph) {
-		if(immune) {
+	private void drawPlayer(Graphics grph) {
+		if(isImmune()) {
 			if(time < 20) {
 				time++;
 				grph.draw(carl.getShape());
-				System.out.println("DRAW  " + time);
 			}
 			else if (time < 40) {
 				time++;
-				System.out.println("NO DRAW  " + time);
 			}
 			else {
 				time = 0;
@@ -31,8 +35,19 @@ public class GUI extends ObjectHandler {
 		}
 		else {
 			grph.draw(carl.getShape());
-			System.out.println("NO IMMUNE DRAW");
 		}
 	}
+	
+	private void drawSpaceObjects(Graphics grph) {
+		for(Shot s : bullets) {
+			grph.draw(s.getShape());
+		}
+		for(Asteroid a : asteroids)
+			grph.draw(a.getShape());
+	}
+	
+	/*public void drawStart(Graphics grph) {
+		grph.drawString("");
+	}*/
 
 }
