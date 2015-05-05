@@ -60,7 +60,6 @@ public class Main extends BasicGame
 		for(Asteroid a : objecthandler.asteroids)
 			g.draw(a.getShape());
 		
-	
 		//objecthandler.mirror(objecthandler.carl);
 		
 		objecthandler.updateMirror();
