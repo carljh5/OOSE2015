@@ -44,10 +44,10 @@ public class Player extends SpaceObject {
 		alignment(0.1f);
 	}
 	
-	public void shoot() {
+	/*public void shoot() {
 		//spawnBullet(getX(), getY(), radians);
 		System.out.println("spawnBullet(" + getX() + ", " + getY() + ", " + radians +")");
-	}
+	}*/
 
 
 }

@@ -1,5 +1,7 @@
 package asteroids;
 
+import java.util.Random;
+
 import org.newdawn.slick.geom.Polygon;
 
 
@@ -19,8 +21,10 @@ public class Asteroid extends SpaceObject {
 		shape = new Polygon(points);
 		shape.setCenterX(100);
 		shape.setCenterY(100);
+		Random rnd = new Random();
+		float randSpeed = (float) rnd.nextInt(2);
+		setSpeed(randSpeed+0.5f);
 		setDirection(dir);
-		setSpeed(2.0f);
 	}
 	
 	

@@ -1,62 +1,44 @@
 
 package asteroids;
 
-import org.newdawn.slick.GameContainer;
 
-public class GameMaster {
+public final class GameMaster {
 	
-	public int height;
-	public int width;
-	public int mirrorLimit = 0;
-	//public SpaceObject object = new SpaceObject();
+	private static int height;
+	private static int width;
+	private static int score;
+	private static int life;	
 	
-	public GameMaster(GameContainer gcon) {
-		width = gcon.getWidth();
-		height = gcon.getHeight();
+	public static void setHeight(int _height) {
+		height = _height;
 	}
 	
-	public int getHeight(){
+	public static void setWidth(int _width) {
+		width = _width;
+	}
+	
+	public static int getHeight(){
 		return height;
 	}
 	
-	public int getWidth(){
+	public static int getWidth(){
 		return width;
 	}
 	
-	/**
-	 * 
-	 * Mirrors the Spaceobject
-	 */
-	public void mirror(SpaceObject object) {
-		if (object.getX() < 0) {
-			object.setX(width);
-			mirrorLimit++;
-		} 
-		if (object.getY() < 0) {
-			object.setY(height);
-			mirrorLimit++;
-		} 
-		if (object.getX() > width) {
-			object.setX(0);
-			mirrorLimit++;
-		} 
-		if (object.getY() > height) {
-			object.setY(0);
-			mirrorLimit++;
-		}	
+	public static void setScore(int s) {
+		score += s;
 	}
 	
-	/**
-	 * 
-	 * Makes sure that the shots fired will decay
-	 */
-	public boolean shotDecay (SpaceObject object) {
-		if (mirrorLimit > 2) {
-			mirrorLimit = 0;
-			return true;
-		} else {
-			return false;
-		}
+	public static int getScore() {
+		return score;
+	}
+	
+	public static void setLife(int l) {
+		life = l;
+	}
+	
+	public static int getLife() {
+		return life;
 	}
 
 }
