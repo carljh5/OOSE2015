@@ -33,6 +33,12 @@ public class ObjectHandler {
 				float xPos = rnd.nextFloat()*width;
 				int height = GameMaster.getHeight();
 				float yPos = rnd.nextFloat()*height/4;
+				float xBound = GameMaster.getWidth()/15;
+				float yBound = GameMaster.getHeight()/15;
+				if (yPos < carl.getY()+yBound && yPos > carl.getY()-yBound)
+					yPos = carl.getY()-yBound;
+				if (xPos < carl.getX()+xBound && xPos > carl.getX()-xBound)
+					xPos = carl.getX()-xBound;
 				asteroids.add(new Asteroid(3,(float)(2*Math.PI/(level+1))*i,xPos,yPos));	
 			}
 	}
