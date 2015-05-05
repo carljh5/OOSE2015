@@ -13,7 +13,7 @@ import org.newdawn.slick.SlickException;
 public class Main extends BasicGame
 {
 	public ObjectHandler objecthandler = new ObjectHandler();
-	
+	public GUI gui = new GUI();
 	public Main(String gamename)
 	{
 		super(gamename);
@@ -61,7 +61,7 @@ public class Main extends BasicGame
 			g.draw(a.getShape());
 		
 		//objecthandler.mirror(objecthandler.carl);
-		
+		gui.display(g);
 		objecthandler.updateMirror();
 		
 	}

@@ -49,8 +49,10 @@ public class ObjectHandler {
 		  }
 		  for (int k = 0; k<spawnNum; k++)
 			  asteroids.add(new Asteroid(asteroidRemove.scale-1, (float)(2*Math.PI/(spawnNum))*k));
-		  if (asteroidRemove != null)
+		  if (asteroidRemove != null) {
 			  asteroids.remove(asteroidRemove);
+			  GameMaster.setScore(1);
+		  }
 		  if (bulletRemove != null)
 			  bullets.remove(bulletRemove);
 
