@@ -7,17 +7,21 @@ import org.newdawn.slick.geom.Polygon;
 
 public class Asteroid extends SpaceObject {
 	int scale;
+	float xCenter;
+	float yCenter;
 	int diffAsteroids = 2;
 	float [][] points = new float[diffAsteroids][0];
 	
-	public Asteroid(int scale, float dir) {
+	public Asteroid(int scale, float dir, float xCenter, float yCenter) {
 		this.scale = scale;
+		this.xCenter = xCenter;
+		this.yCenter = yCenter;
 		float [] pts =  initPoints();
-		for(float p : pts)
-			p = p*scale;
+		for(int i = 0; i<pts.length; i++)
+			pts[i] *=scale;
 		shape = new Polygon(pts);
-		shape.setCenterX(100);
-		shape.setCenterY(100);
+		shape.setCenterX(xCenter);
+		shape.setCenterY(yCenter);
 		Random rnd = new Random();
 		float randSpeed = (float) rnd.nextInt(2);
 		setSpeed(randSpeed+0.5f);
@@ -31,4 +35,5 @@ public class Asteroid extends SpaceObject {
 		int version = rnd.nextInt(diffAsteroids);
 		return points[version];
 	}
+	
 }
