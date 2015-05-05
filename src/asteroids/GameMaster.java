@@ -34,7 +34,7 @@ public final class GameMaster {
 	}
 	
 	public static void setLife(int l) {
-		life = l;
+		life += l;
 	}
 	
 	public static int getLife() {

@@ -53,7 +53,7 @@ public class Main extends BasicGame
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException
 	{
-		g.draw(objecthandler.carl.getShape());
+		//g.draw(objecthandler.carl.getShape());
 		for(Shot s : objecthandler.bullets) {
 			g.draw(s.getShape());
 		}
@@ -61,7 +61,8 @@ public class Main extends BasicGame
 			g.draw(a.getShape());
 		
 		//objecthandler.mirror(objecthandler.carl);
-		gui.display(g);
+		gui.drawScore(g);
+		gui.drawPlayer(g);
 		objecthandler.updateMirror();
 		
 	}

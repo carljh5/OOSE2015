@@ -7,7 +7,7 @@ public class Player extends SpaceObject {
 	
 	Vector2f align = new Vector2f(0,0);
 	float radians;
-	
+	//float tempTime;
 	
 	public Player() {
 		float[] points = {0, -5, 20, 0, 0, 5};
@@ -44,6 +44,10 @@ public class Player extends SpaceObject {
 		alignment(0.1f);
 	}
 	
+	/*public void respawn() {
+		tempTime = (float)System.currentTimeMillis();
+		
+	}*/
 	/*public void shoot() {
 		//spawnBullet(getX(), getY(), radians);
 		System.out.println("spawnBullet(" + getX() + ", " + getY() + ", " + radians +")");

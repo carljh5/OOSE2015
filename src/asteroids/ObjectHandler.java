@@ -1,14 +1,16 @@
 package asteroids;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class ObjectHandler {
 	
 	public boolean newLevel;
 	public ArrayList<Asteroid> asteroids = new ArrayList<Asteroid>();
 	public ArrayList<Shot> bullets = new ArrayList<Shot>();
-	public Player carl = new Player();
-
+	public static Player carl = new Player();
+	public static boolean immune = false;
+	public float immuneTime = 0f;
 	
 	public ObjectHandler(){
 		
@@ -47,18 +49,46 @@ public class ObjectHandler {
 				  }
 			  } 
 		  }
-		  for (int k = 0; k<spawnNum; k++)
-			  asteroids.add(new Asteroid(asteroidRemove.scale-1, (float)(2*Math.PI/(spawnNum))*k));
+		  for (int k = 0; k<spawnNum; k++){
+			  Random rand = new Random();
+			  float ranNum = rand.nextFloat();
+			  float degree = (float) ((ranNum*2*Math.PI/spawnNum)+(k*2*Math.PI/spawnNum));
+			  asteroids.add(new Asteroid(asteroidRemove.scale-1,degree));
+			  asteroids.get(asteroids.size()-1).setSpeed(50);
+		  }
 		  if (asteroidRemove != null) {
 			  asteroids.remove(asteroidRemove);
 			  GameMaster.setScore(1);
 		  }
 		  if (bulletRemove != null)
 			  bullets.remove(bulletRemove);
-
 	  }
-	  else
+	  else {
 		  newLevel = true;
+	  }
+	  
+	  if (immuneTime > 2f) {
+		  immune = false;
+		  System.out.println("NOT IMMUNE");
+	  }
+	  else {
+		  immune = true;
+		  immuneTime += 0.01f;
+		  System.out.println("MEGA IMMUNE  " + immuneTime);
+	  }
+	  spawnPlayer();
+	}
+	
+	private void spawnPlayer() {
+		for(Asteroid a : asteroids) {
+			if(!immune) {
+				if(a.isColliding(carl.getShape())) {
+					carl = new Player();
+					GameMaster.setLife(-1);
+					immuneTime = 0f;
+				}
+			}
+		}
 	}
 	
 	/**
