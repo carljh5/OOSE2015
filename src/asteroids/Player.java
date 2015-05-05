@@ -1,12 +1,14 @@
 package asteroids;
 
 import org.newdawn.slick.geom.Polygon;
+import org.newdawn.slick.geom.Transform;
 
 
 public class Player extends SpaceObject {
 	
 	float radians;
-
+	float drag = 1.0075f;
+	
 	public Player() {
 		float[] points = {0, -5, 20, 0, 0, 5};
 		shape = new Polygon(points);
@@ -36,7 +38,6 @@ public class Player extends SpaceObject {
 	public void rotateLeft() {
 		radians += -0.1f;
 		alignment(-0.1f);
-		
 	}
 	
 	/**
@@ -45,6 +46,16 @@ public class Player extends SpaceObject {
 	public void rotateRight() {
 		radians += 0.1f;
 		alignment(0.1f);
+	}
+	
+	@Override
+	/**
+	 * Translates the players transform with angular drag.
+	 */
+	public void move() {
+		direction.x /= drag;
+		direction.y /= drag;
+		shape = shape.transform(Transform.createTranslateTransform(direction.x, direction.y));
 	}
 
 

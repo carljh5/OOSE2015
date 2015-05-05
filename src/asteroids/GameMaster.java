@@ -7,7 +7,8 @@ public final class GameMaster {
 	private static int height;
 	private static int width;
 	private static int score;
-	private static int life;	
+	private static int life;
+	private static int level;
 	
 	public static void setHeight(int _height) {
 		height = _height;
@@ -39,6 +40,14 @@ public final class GameMaster {
 	
 	public static int getLife() {
 		return life;
+	}
+	
+	public static void setLevel(int l) {
+		level += l;
+	}
+	
+	public static int getLevel() {
+		return level;
 	}
 
 }

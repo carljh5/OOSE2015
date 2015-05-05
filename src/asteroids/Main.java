@@ -26,24 +26,17 @@ public class Main extends BasicGame
 		GameMaster.setLife(3);
 		gui = new GUI();
 		inputListener = new InputListener();
-		/*while(true) {
-			
-		}*/
 	}
 	
 	@Override
 	public void update(GameContainer gc, int i) throws SlickException {
 		inputListener.updateMove(gc);
-		
-		
 	}
 
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException
 	{
-		
 		gui.drawContent(g);
-		
 	}
 
 	public static void main(String[] args)
