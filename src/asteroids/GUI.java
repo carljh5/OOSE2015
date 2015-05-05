@@ -18,6 +18,7 @@ public class GUI extends ObjectHandler {
 	private void drawScore(Graphics grph) {
 		grph.drawString("SCORE : " + Integer.toString(GameMaster.getScore()), 10, 0);
 		grph.drawString("SHIPS : " + Integer.toString(GameMaster.getLife()), GameMaster.getWidth()-100, 0);
+		grph.drawString("LVL : " + Integer.toString(GameMaster.getLevel()), 10, 20);
 	}
 	
 	private void drawPlayer(Graphics grph) {
