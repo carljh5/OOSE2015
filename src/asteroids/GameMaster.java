@@ -42,8 +42,8 @@ public final class GameMaster {
 		return life;
 	}
 	
-	public static void setLevel(int l) {
-		level += l;
+	public static void setLevel() {
+		level += 1;
 	}
 	
 	public static int getLevel() {

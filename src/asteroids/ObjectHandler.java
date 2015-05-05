@@ -5,13 +5,11 @@ import java.util.Random;
 
 public class ObjectHandler {
 	
-	private static boolean newLevel;
+	private static boolean newLevel = true;
 	protected static ArrayList<Asteroid> asteroids = new ArrayList<Asteroid>();
 	protected static ArrayList<Shot> bullets = new ArrayList<Shot>();
 	protected static Player carl = new Player();
 	protected static float immuneTime = 0f;
-	private static int level = 1;
-
 	
 	public void runObject() {
 		spawnNew();
@@ -20,14 +18,15 @@ public class ObjectHandler {
 		updateMirror();
 	}
 	
-
 	/**
 	 * 
 	 * Is called when the level is empty / completed
 	 */	
 	private void spawnNew(){
-		if (newLevel)
-			for(int i = 0; i<level; i++){
+		if (newLevel){
+			GameMaster.setLevel();
+			bullets.clear();
+			for(int i = 0; i<GameMaster.getLevel()+1; i++){
 				Random rnd = new Random();
 				int width = GameMaster.getWidth();
 				float xPos = rnd.nextFloat()*width;
@@ -39,8 +38,10 @@ public class ObjectHandler {
 					yPos = carl.getY()-yBound;
 				if (xPos < carl.getX()+xBound && xPos > carl.getX()-xBound)
 					xPos = carl.getX()-xBound;
-				asteroids.add(new Asteroid(3,(float)(2*Math.PI/(level+1))*i,xPos,yPos));	
+				asteroids.add(new Asteroid(3,(float)(2*Math.PI/(GameMaster.getLevel()+1))*i,xPos,yPos));	
 			}
+		}
+			
 	}
 	
 
@@ -87,7 +88,6 @@ public class ObjectHandler {
 			  bullets.remove(bulletRemove);
 	  }
 	  else{
-		  level++;
 		  newLevel = true;
 	  }
 	}
