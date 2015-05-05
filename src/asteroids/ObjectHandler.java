@@ -11,21 +11,23 @@ public class ObjectHandler {
 	public static Player carl = new Player();
 	public static boolean immune = false;
 	public float immuneTime = 0f;
+
+	public int level = 1;
 	
 	public ObjectHandler(){
 		
 	}
 	
 	public void runObject() {
-		spawnNew(1);
+		spawnNew();
 		spawnUpdate();
 		System.out.println(asteroids.size());
 	}
 	
 	//Is called when the level is empty / completed
-	public void spawnNew(int level){
+	public void spawnNew(){
 		if (newLevel)
-			for(int i = 0; i<level+1; i++)
+			for(int i = 0; i<level; i++)
 				asteroids.add(new Asteroid(3, (float)(2*Math.PI/(level+1))*i));			
 	}
 	
@@ -63,7 +65,9 @@ public class ObjectHandler {
 		  if (bulletRemove != null)
 			  bullets.remove(bulletRemove);
 	  }
-	  else {
+
+	  else{
+		  level++;
 		  newLevel = true;
 	  }
 	  
@@ -89,8 +93,8 @@ public class ObjectHandler {
 				}
 			}
 		}
-	}
-	
+	  }
+
 	/**
 	 * 
 	 * Mirrors the Spaceobject
