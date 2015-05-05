@@ -10,7 +10,6 @@ public class ObjectHandler {
 	public ArrayList<Shot> bullets = new ArrayList<Shot>();
 	public Player carl = new Player();
 	public int level = 1;
-
 	
 	public ObjectHandler(){
 		
@@ -25,8 +24,14 @@ public class ObjectHandler {
 	//Is called when the level is empty / completed
 	public void spawnNew(){
 		if (newLevel)
-			for(int i = 0; i<level; i++)
-				asteroids.add(new Asteroid(3, (float)(2*Math.PI/(level+1))*i));			
+			for(int i = 0; i<level; i++){
+				Random rnd = new Random();
+				int width = GameMaster.getWidth();
+				float xPos = rnd.nextFloat()*width;
+				int height = GameMaster.getHeight();
+				float yPos = rnd.nextFloat()*height/4;
+				asteroids.add(new Asteroid(3,(float)(2*Math.PI/(level+1))*i,xPos,yPos));	
+			}
 	}
 	
 	//Is called when the level is NOT empty / completed
@@ -53,8 +58,7 @@ public class ObjectHandler {
 			  Random rand = new Random();
 			  float ranNum = rand.nextFloat();
 			  float degree = (float) ((ranNum*2*Math.PI/spawnNum)+(k*2*Math.PI/spawnNum));
-			  asteroids.add(new Asteroid(asteroidRemove.scale-1,degree));
-			  asteroids.get(asteroids.size()-1).setSpeed(50);
+			  asteroids.add(new Asteroid(asteroidRemove.scale-1,degree,asteroidRemove.getX(),asteroidRemove.getY()));
 		  }
 		  if (asteroidRemove != null)
 			  asteroids.remove(asteroidRemove);
