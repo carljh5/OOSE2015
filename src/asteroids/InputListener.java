@@ -13,6 +13,7 @@ public class InputListener extends ObjectHandler {
 		runObject();
 		if(gaco.getInput().isKeyPressed(Input.KEY_SPACE)){
 			bullets.add(new Shot(carl.getX(), carl.getY(), carl.radians));
+			GameMaster.setState(1);
 		}
 		if(gaco.getInput().isKeyDown(Input.KEY_UP))
 			carl.thrust();
@@ -20,6 +21,7 @@ public class InputListener extends ObjectHandler {
 			carl.rotateLeft();
 		if(gaco.getInput().isKeyDown(Input.KEY_RIGHT))
 			carl.rotateRight();
+		
 		for(Shot s : bullets) {
 			s.move();
 		}

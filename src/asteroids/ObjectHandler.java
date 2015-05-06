@@ -12,10 +12,13 @@ public class ObjectHandler {
 	protected static float immuneTime = 0f;
 	
 	public void runObject() {
-		spawnNew();
-		spawnUpdate();
-		spawnPlayer();
-		updateMirror();
+		
+		if (GameMaster.getState() == 1) {
+			spawnNew();
+			spawnUpdate();
+			spawnPlayer();
+			updateMirror();
+		}
 	}
 	
 	/**
