@@ -20,7 +20,6 @@ public class GUI extends ObjectHandler {
 	}
 	
 	public void drawContent(Graphics grph) {
-		drawStartScene();
 		drawScore(grph);
 		drawPlayer(grph);
 		drawSpaceObjects(grph);
@@ -58,10 +57,11 @@ public class GUI extends ObjectHandler {
 			grph.draw(a.getShape());
 	}
 	
-	private void drawStartScene() {
+	void drawStartScene(Graphics grph) {
 		JFrame window = new JFrame();
 		JPanel panel = new JPanel();
 		JButton b1 = new JButton("Play Asteroids");
+		grph.drawString("ASTEROIDS", GameMaster.getWidth()/2, GameMaster.getHeight()/3);
 		
 		window.setLayout(new GridLayout());
 		window.add(panel);
@@ -70,6 +70,7 @@ public class GUI extends ObjectHandler {
 		b1.addActionListener(new ActionListener()	{
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "Heres a message");
+				GameMaster.setState(1);
 			}
 		});
 	}

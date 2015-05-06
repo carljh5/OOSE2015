@@ -36,7 +36,11 @@ public class Main extends BasicGame
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException
 	{
-		gui.drawContent(g);
+		if (GameMaster.getState() == 0) {
+			gui.drawStartScene(g);
+		} else {
+			gui.drawContent(g);
+		}
 	}
 
 	public static void main(String[] args)
