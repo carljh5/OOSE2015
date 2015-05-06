@@ -1,5 +1,15 @@
 package asteroids;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 
 
@@ -10,6 +20,7 @@ public class GUI extends ObjectHandler {
 	}
 	
 	public void drawContent(Graphics grph) {
+		drawStartScene();
 		drawScore(grph);
 		drawPlayer(grph);
 		drawSpaceObjects(grph);
@@ -45,6 +56,22 @@ public class GUI extends ObjectHandler {
 		}
 		for(Asteroid a : asteroids)
 			grph.draw(a.getShape());
+	}
+	
+	private void drawStartScene() {
+		JFrame window = new JFrame();
+		JPanel panel = new JPanel();
+		JButton b1 = new JButton("Play Asteroids");
+		
+		window.setLayout(new GridLayout());
+		window.add(panel);
+		panel.add(b1);
+		
+		b1.addActionListener(new ActionListener()	{
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Heres a message");
+			}
+		});
 	}
 	
 	/*public void drawStart(Graphics grph) {
