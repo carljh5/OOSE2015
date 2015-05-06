@@ -63,21 +63,13 @@ public class GUI extends ObjectHandler {
 		grph.drawString("ASTEROIDS", GameMaster.getWidth()/2-40, GameMaster.getHeight()/3);
 		grph.drawString("PRESS SPACE WHEN READY TO PLAY!", GameMaster.getWidth()/2-160, GameMaster.getHeight()/3+40);
 		
+	}
+	
+	void drawEndScene(Graphics grph) {
+
+		grph.drawString("GAME OVER!", GameMaster.getWidth()/2-40, GameMaster.getHeight()/3);
+		grph.drawString("PRESS SPACE WHEN READY TO PLAY AGAIN!", GameMaster.getWidth()/2-160, GameMaster.getHeight()/3+40);
 		
-//		JFrame window = new JFrame();
-//		JPanel panel = new JPanel();
-//		JButton b1 = new JButton("Play Asteroids");
-//		window.setLayout(new GridLayout());
-//		window.add(panel);
-//		panel.add(b1);
-//		
-//		b1.addActionListener(new ActionListener()	{
-//			public void actionPerformed(ActionEvent e) {
-//				GameMaster.setState(1);
-//			}
-//		});
-//		
-//		window.setVisible(true);
 	}
 	
 	/*public void drawStart(Graphics grph) {

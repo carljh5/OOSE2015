@@ -13,7 +13,8 @@ public class InputListener extends ObjectHandler {
 		runObject();
 		if(gaco.getInput().isKeyPressed(Input.KEY_SPACE)){
 			bullets.add(new Shot(carl.getX(), carl.getY(), carl.radians));
-			GameMaster.setState(1);
+			if (GameMaster.getState() != 1)
+				GameMaster.setState(1);
 		}
 		if(gaco.getInput().isKeyDown(Input.KEY_UP))
 			carl.thrust();

@@ -93,6 +93,10 @@ public class ObjectHandler {
 	  else{
 		  newLevel = true;
 	  }
+	  
+	  if (GameMaster.getLife() == -1) {
+		  GameMaster.setState(2);
+	  }
 	}
 	
 	protected boolean isImmune() {
