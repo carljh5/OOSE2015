@@ -79,7 +79,7 @@ public class GUI extends ObjectHandler {
 	 * Draws starting scene
 	 * @param Graphics
 	 */
-	void drawStartScene(Graphics grph) {
+	public void drawStartScene(Graphics grph) {
 		grph.drawString("ASTEROIDS", GameMaster.getWidth()/2-40, GameMaster.getHeight()/3);
 		grph.drawString("PRESS SPACE WHEN READY TO PLAY!", GameMaster.getWidth()/2-160, GameMaster.getHeight()/3+40);
 	}
@@ -88,7 +88,7 @@ public class GUI extends ObjectHandler {
 	 * Draws game over scene
 	 * @param Graphics
 	 */
-	void drawEndScene(Graphics grph) {
+	public void drawEndScene(Graphics grph) {
 		grph.drawString("GAME OVER!", GameMaster.getWidth()/2-40, GameMaster.getHeight()/3);
 		grph.drawString("YOUR SCORE WAS: " + Integer.toString(GameMaster.getScore()), GameMaster.getWidth()/2-160, GameMaster.getHeight()/3+40);
 		grph.drawString("PRESS SPACE WHEN READY TO PLAY AGAIN!", GameMaster.getWidth()/2-160, GameMaster.getHeight()/3+80);
