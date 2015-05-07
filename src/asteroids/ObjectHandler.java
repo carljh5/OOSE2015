@@ -10,14 +10,10 @@ public class ObjectHandler {
 	protected static ArrayList<Shot> bullets = new ArrayList<Shot>();
 	protected static Player carl = new Player();
 	protected static float immuneTime = 0f;
-	
 	protected static float heat;
 	protected static float maxHeat = 100f;
 	protected static boolean overHeat = false;
-	
-
 	protected SoundHandler sound = new SoundHandler();
-	
 
 	public void runObject() {
 		// Only run the ObjectHandler when the game is in play mode (state 1)
@@ -31,7 +27,6 @@ public class ObjectHandler {
 	}
 	
 	/**
-	 * 
 	 * Is called when the level is empty / completed
 	 */	
 	private void spawnNew(){
@@ -64,7 +59,6 @@ public class ObjectHandler {
 	}
 	
 	/**
-	 * 
 	 * Is called when the level is NOT empty / completed
 	 */
 	private void spawnUpdate(){
@@ -78,7 +72,8 @@ public class ObjectHandler {
 		  /*
 		   * The following statement checks if any bullet is colliding with any asteroid.
 		   * If true, bulletRemove will be set to the colliding bullet and asteroidRemove will
-		   * be set to the colliding asteroid
+		   * be set to the colliding asteroid and the loop will be broken in order to create a 
+		   * new set of asteroids.
 		   */
 		  for (Asteroid i : asteroids){
 			  for (Shot j : bullets){
@@ -133,11 +128,10 @@ public class ObjectHandler {
 	  }
 	}
 	
-	/*
-	 * 
-	 * Method to update the overheat boolean as well as decrease the heat over time
-	 */
 	
+	/**
+ 	* Method to update the over heat boolean as well as decrease the heat over time
+ 	*/
 	private void updateHeat() {
 		if (heat >= maxHeat){
 			overHeat = true;
@@ -153,9 +147,9 @@ public class ObjectHandler {
 			heat -= 0.5f;
 	}
 	
-	/*
-	 * 
+	/**
 	 * Method to check whether the player is immune or not
+	 * @return Returns a boolean
 	 */
 	protected boolean isImmune() {
 		if (immuneTime > 2f) {
@@ -168,10 +162,9 @@ public class ObjectHandler {
 	}
 	
 	/**
-	 * 
-	 * Method for spawning player when he collides with an asteroid.
-	 * The player will gain immunity for a short amount of time when spawned
-	 */
+	* Method for spawning player when he collides with an asteroid.
+	* The player will gain immunity for a short amount of time when spawned
+	*/
 	private void spawnPlayer() {
 		if(!isImmune()) {
 			for(Asteroid a : asteroids) {
@@ -186,7 +179,6 @@ public class ObjectHandler {
 	}
 
 	/**
-	 * 
 	 * Mirrors a SpaceObject
 	 */
 	private void mirror(SpaceObject object) {

@@ -48,7 +48,6 @@ public class SpaceObject {
 	}
 	
 	/**
-	 * 
 	 * @return The position of the object on the objects center x-coordinate.
 	 */
 	public float getX() {
@@ -63,7 +62,6 @@ public class SpaceObject {
 	}
 	
 	/**
-	 * 
 	 * @return The position of the object on the objects center y-coordinate.
 	 */
 	public float getY() {
