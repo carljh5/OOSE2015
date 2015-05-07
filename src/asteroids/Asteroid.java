@@ -13,12 +13,11 @@ public class Asteroid extends SpaceObject {
 	float [][] points = new float[diffAsteroids][0];
 	
 	/**
-	* The constructor for an asteroid object. The asteroid takes a scale, a direction and a center input as arguments.
-	* The size of the asteroid is based on the scale and the speed is random.
-	* @param scale
- 	* @param dir
- 	* @param xCenter
- 	* @param yCenter
+	* The constructor for an asteroid object
+	* @param scale The scale of the asteroid
+ 	* @param dir The direction of the asteroid
+ 	* @param xCenter The x-coordinate for the center of the asteroid
+ 	* @param yCenter The y-coordinate for the center of the asteroid
  	*/
 	public Asteroid(int scale, float dir, float xCenter, float yCenter) {
 		this.scale = scale;
@@ -39,9 +38,8 @@ public class Asteroid extends SpaceObject {
 	}
 	
 	/**
-	 * This method returns the points for the shape of the asteroid. 4 shapes are pre-defined and the shape is chosen randomly
-	 * among these.
-	 * @return
+	 * This method for determining the points of the asteroid, which are translated into a polygon.
+	 * @return Returns an array of points
 	 */
 	float [] initPoints() {
 		points[0] = new float[] {0,0,5,20,30,10,25,-20,10,-12};
@@ -56,5 +54,4 @@ public class Asteroid extends SpaceObject {
 		int version = rnd.nextInt(diffAsteroids);
 		return points[version];
 	}
-	
 }
