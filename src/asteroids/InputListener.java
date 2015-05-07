@@ -21,6 +21,8 @@ public class InputListener extends ObjectHandler {
 			}
 			if (GameMaster.getState() == 2) {
 				GameMaster.resetGame();
+				asteroids.clear();
+				bullets.clear();
 			}
 		}
 		if(gaco.getInput().isKeyDown(Input.KEY_UP))

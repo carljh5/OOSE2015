@@ -69,7 +69,7 @@ public final class GameMaster {
 	
 	public static void resetGame() {
 		setState(1);
-		setLevel(1);
+		setLevel(0);
 		setLife(4);
 		resetScore(0);
 	}
