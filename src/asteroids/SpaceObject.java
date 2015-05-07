@@ -68,6 +68,7 @@ public class SpaceObject {
 	public float getY() {
 		return shape.getCenterY();
 	}
+	
 	/**
 	 * Sets the position of the object on the objects center y-coordinate.
 	 * @param y The y coordinate.
