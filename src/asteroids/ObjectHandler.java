@@ -11,8 +11,7 @@ public class ObjectHandler {
 	protected static Player carl = new Player();
 	protected static float immuneTime = 0f;
 	
-	public void runObject() {
-		
+	public void runObject() {		
 		if (GameMaster.getState() == 1) {
 			spawnNew();
 			spawnUpdate();
@@ -157,8 +156,9 @@ public class ObjectHandler {
 	}
 	
 	/**
-	 * 
 	 * Makes sure that the shots fired will decay
+	 * @param SpaceObject
+	 * @return boolean
 	 */
 	private boolean shotDecay (SpaceObject object) {
 		if (object.mirrorLimit >= 2) {
@@ -171,7 +171,6 @@ public class ObjectHandler {
 	
 
 	/**
-	 * 
 	 * Updates the mirror method for bullets, player and asteroids
 	 */
 	private void updateMirror() {
