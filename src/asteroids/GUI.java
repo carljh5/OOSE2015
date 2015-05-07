@@ -81,7 +81,8 @@ public class GUI extends ObjectHandler {
 	 */
 	public void drawStartScene(Graphics grph) {
 		grph.drawString("ASTEROIDS", GameMaster.getWidth()/2-40, GameMaster.getHeight()/3);
-		grph.drawString("PRESS SPACE WHEN READY TO PLAY!", GameMaster.getWidth()/2-160, GameMaster.getHeight()/3+40);
+		grph.drawString("Use the arrow keys to steer and space to shoot!", GameMaster.getWidth()/2-160, GameMaster.getHeight()/3+40);
+		grph.drawString("PRESS SPACE WHEN READY TO PLAY!", GameMaster.getWidth()/2-160, GameMaster.getHeight()/3+80);
 	}
 	
 	/**
