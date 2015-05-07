@@ -153,7 +153,7 @@ public class ObjectHandler {
 				}
 			}
 		}
-	  }
+	}
 
 	/**
 	 * 
@@ -199,7 +199,6 @@ public class ObjectHandler {
 			return false;
 		}
 	}
-	
 
 	/**
 	 * Updates the mirror method for bullets, player and asteroids

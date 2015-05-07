@@ -31,6 +31,10 @@ public final class GameMaster {
 		score += s;
 	}
 	
+	public static void resetScore(int s) {
+		score = s;
+	}
+	
 	public static int getScore() {
 		return score;
 	}
@@ -61,6 +65,13 @@ public final class GameMaster {
 	
 	public static int getLevel() {
 		return level;
+	}
+	
+	public static void resetGame() {
+		setState(1);
+		setLevel(1);
+		setLife(4);
+		resetScore(0);
 	}
 
 }

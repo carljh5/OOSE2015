@@ -17,8 +17,7 @@ public class InputListener extends ObjectHandler {
 				GameMaster.setState(1);
 			}
 			if (GameMaster.getState() == 2) {
-				GameMaster.setState(1);
-				GameMaster.setLife(4);
+				GameMaster.resetGame();
 			}
 		}
 		if(gaco.getInput().isKeyDown(Input.KEY_UP))
