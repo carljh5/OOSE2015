@@ -1,37 +1,34 @@
 package asteroids;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.GridLayout;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
 import org.newdawn.slick.Color;
-import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Input;
 
 
 public class GUI extends ObjectHandler {
+	/**
+	 * Time variable used for drawing player
+	 */
 	int time = 0;
-	public GUI() {
-		
-	}
 	
+	/**
+	 * Draws heating bar
+	 * @param Graphics
+	 */
 	private void drawHeatingBar(Graphics grph){
-		if (overHeat)
+		if (overHeat) {
 			grph.setColor(Color.red);
-		else
+		} else {
 			grph.setColor(Color.white);
+		}
 		grph.drawString("HEAT O-METER", 2*GameMaster.getWidth()/5, 0);
 		grph.drawRect(2*GameMaster.getWidth()/5, GameMaster.getHeight()/20, GameMaster.getWidth()/5, GameMaster.getHeight()/20);
 		grph.fillRect(2*GameMaster.getWidth()/5, GameMaster.getHeight()/20, (heat/maxHeat)*GameMaster.getWidth()/5, GameMaster.getHeight()/20);
-		
 	}
 	
+	/**
+	 * Draws all content
+	 * @param Graphics
+	 */
 	public void drawContent(Graphics grph) {
 		drawScore(grph);
 		drawPlayer(grph);
@@ -39,12 +36,20 @@ public class GUI extends ObjectHandler {
 		drawHeatingBar(grph);
 	}
 	
+	/**
+	 * Draws score
+	 * @param Graphics
+	 */
 	private void drawScore(Graphics grph) {
 		grph.drawString("SCORE : " + Integer.toString(GameMaster.getScore()), 10, 0);
 		grph.drawString("SHIPS : " + Integer.toString(GameMaster.getLife()), GameMaster.getWidth()-100, 0);
 		grph.drawString("LVL : " + Integer.toString(GameMaster.getLevel()), 10, 20);
 	}
 	
+	/**
+	 * Draws player
+	 * @param Graphics
+	 */
 	private void drawPlayer(Graphics grph) {
 		if(isImmune()) {
 			if(time < 20) {
@@ -63,6 +68,10 @@ public class GUI extends ObjectHandler {
 		}
 	}
 	
+	/**
+	 * Draws space objects
+	 * @param Graphics
+	 */
 	private void drawSpaceObjects(Graphics grph) {
 		for(Shot s : bullets) {
 			grph.draw(s.getShape());
@@ -71,23 +80,23 @@ public class GUI extends ObjectHandler {
 			grph.draw(a.getShape());
 	}
 	
+	/**
+	 * Draws starting scene
+	 * @param Graphics
+	 */
 	void drawStartScene(Graphics grph) {
-
 		grph.drawString("ASTEROIDS", GameMaster.getWidth()/2-40, GameMaster.getHeight()/3);
 		grph.drawString("PRESS SPACE WHEN READY TO PLAY!", GameMaster.getWidth()/2-160, GameMaster.getHeight()/3+40);
-		
 	}
 	
+	/**
+	 * Draws game over scene
+	 * @param Graphics
+	 */
 	void drawEndScene(Graphics grph) {
-
 		grph.drawString("GAME OVER!", GameMaster.getWidth()/2-40, GameMaster.getHeight()/3);
 		grph.drawString("YOUR SCORE WAS: " + Integer.toString(GameMaster.getScore()), GameMaster.getWidth()/2-160, GameMaster.getHeight()/3+40);
 		grph.drawString("PRESS SPACE WHEN READY TO PLAY AGAIN!", GameMaster.getWidth()/2-160, GameMaster.getHeight()/3+80);
-		
 	}
-	
-	/*public void drawStart(Graphics grph) {
-		grph.drawString("");
-	}*/
 
 }
