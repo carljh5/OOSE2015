@@ -11,7 +11,22 @@ public class ObjectHandler {
 	protected static Player carl = new Player();
 	protected static float immuneTime = 0f;
 	
-
+	protected static float heat;
+	protected static float maxHeat = 100f;
+	protected static boolean overHeat = false;
+	
+	public void updateHeat() {
+		if (heat >= maxHeat){
+			overHeat = true;
+		}
+		if (heat <= 0){
+			overHeat = false;
+		}
+		if (heat > 0)
+			heat -= 0.5f;
+		System.out.println(heat);
+	}
+	
 	public void runObject() {
 		// Only run the ObjectHandler when the game is in play mode (state 1)
 		if (GameMaster.getState() == 1) {
@@ -19,6 +34,7 @@ public class ObjectHandler {
 			spawnUpdate();
 			spawnPlayer();
 			updateMirror();
+			updateHeat();
 		}
 	}
 	
