@@ -12,6 +12,7 @@ public class InputListener extends ObjectHandler {
 	public void updateMove(GameContainer gaco) {
 		runObject();
 		if(gaco.getInput().isKeyPressed(Input.KEY_SPACE)){
+
 			switch(GameMaster.getState()){
 			case 0: 
 				GameMaster.setState(1);
@@ -19,6 +20,7 @@ public class InputListener extends ObjectHandler {
 			case 1: 
 				if(!overHeat){
 					bullets.add(new Shot(carl.getX(), carl.getY(), carl.radians));
+					sound.playShoot();
 					if (heat + 15f <= maxHeat){
 						heat += 15f;
 					}
@@ -26,6 +28,9 @@ public class InputListener extends ObjectHandler {
 						heat = maxHeat;
 					}
 				}
+				/*else {
+					sound.playOverheat();
+				}*/
 				break;
 			default:
 				GameMaster.resetGame();
@@ -33,9 +38,15 @@ public class InputListener extends ObjectHandler {
 				bullets.clear();
 				break;
 			}
+			
 		}
-		if(gaco.getInput().isKeyDown(Input.KEY_UP))
+		if(gaco.getInput().isKeyDown(Input.KEY_UP)) {
 			carl.thrust();
+			sound.playThrust();
+		}
+		else {
+			sound.stopThrust();
+		}
 		if(gaco.getInput().isKeyDown(Input.KEY_LEFT))
 			carl.rotateLeft();
 		if(gaco.getInput().isKeyDown(Input.KEY_RIGHT))

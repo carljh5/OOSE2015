@@ -16,6 +16,9 @@ public class ObjectHandler {
 	protected static boolean overHeat = false;
 	
 
+	protected SoundHandler sound = new SoundHandler();
+	
+
 	public void runObject() {
 		// Only run the ObjectHandler when the game is in play mode (state 1)
 		if (GameMaster.getState() == 1) {
@@ -115,6 +118,7 @@ public class ObjectHandler {
 		  if (asteroidRemove != null) {
 			  asteroids.remove(asteroidRemove);
 			  GameMaster.setScore(1);
+			  sound.playImpact();
 		  }
 		  if (bulletRemove != null)
 			  bullets.remove(bulletRemove);
@@ -135,10 +139,14 @@ public class ObjectHandler {
 	 */
 	
 	private void updateHeat() {
-		if (heat >= maxHeat)
+		if (heat >= maxHeat){
 			overHeat = true;
-		if (heat <= 0)
+			sound.playOverheat();
+		}
+		if (heat <= 0){
 			overHeat = false;
+			sound.stopOverheat();
+		}
 		if (!overHeat && heat-0.3f >=0)
 			heat -= 0.3f;
 		if (overHeat)
@@ -171,6 +179,7 @@ public class ObjectHandler {
 					carl = new Player(carl.radians);
 					GameMaster.setLife(-1);
 					immuneTime = 0f;
+					sound.playDeath();
 				}
 			}
 		}
