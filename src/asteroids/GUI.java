@@ -68,7 +68,8 @@ public class GUI extends ObjectHandler {
 	void drawEndScene(Graphics grph) {
 
 		grph.drawString("GAME OVER!", GameMaster.getWidth()/2-40, GameMaster.getHeight()/3);
-		grph.drawString("PRESS SPACE WHEN READY TO PLAY AGAIN!", GameMaster.getWidth()/2-160, GameMaster.getHeight()/3+40);
+		grph.drawString("YOUR SCORE WAS: " + Integer.toString(GameMaster.getScore()), GameMaster.getWidth()/2-160, GameMaster.getHeight()/3+40);
+		grph.drawString("PRESS SPACE WHEN READY TO PLAY AGAIN!", GameMaster.getWidth()/2-160, GameMaster.getHeight()/3+80);
 		
 	}
 	
