@@ -38,7 +38,7 @@ public class SoundHandler {
 	 */
 	public void playThrust() {
 		if(!thrust.playing())
-		thrust.play();
+			thrust.play();
 	}
 	
 	/**
@@ -67,7 +67,7 @@ public class SoundHandler {
 	 */
 	public void playOverheat() {
 		if(!overheat.playing())
-		overheat.loop();
+			overheat.loop();
 	}
 	
 	/**

@@ -15,5 +15,4 @@ public class Shot extends SpaceObject {
 		setSpeed(5.0f);
 		setDirection(rads);
 	}
-
 }

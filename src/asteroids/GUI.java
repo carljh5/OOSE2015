@@ -15,11 +15,10 @@ public class GUI extends ObjectHandler {
 	 * @param Graphics
 	 */
 	private void drawHeatingBar(Graphics grph){
-		if (overHeat) {
+		if (overHeat)
 			grph.setColor(Color.red);
-		} else {
+		else
 			grph.setColor(Color.white);
-		}
 		grph.drawString("HEAT O-METER", 2*GameMaster.getWidth()/5, 0);
 		grph.drawRect(2*GameMaster.getWidth()/5, GameMaster.getHeight()/20, GameMaster.getWidth()/5, GameMaster.getHeight()/20);
 		grph.fillRect(2*GameMaster.getWidth()/5, GameMaster.getHeight()/20, (heat/maxHeat)*GameMaster.getWidth()/5, GameMaster.getHeight()/20);
@@ -54,18 +53,15 @@ public class GUI extends ObjectHandler {
 		if(isImmune()) {
 			if(time < 20) {
 				time++;
-				grph.draw(carl.getShape());
+				grph.draw(player.getShape());
 			}
-			else if (time < 40) {
+			else if (time < 40) 
 				time++;
-			}
-			else {
+			else
 				time = 0;
-			}
 		}
-		else {
-			grph.draw(carl.getShape());
-		}
+		else
+			grph.draw(player.getShape());
 	}
 	
 	/**
@@ -73,9 +69,8 @@ public class GUI extends ObjectHandler {
 	 * @param Graphics
 	 */
 	private void drawSpaceObjects(Graphics grph) {
-		for(Shot s : bullets) {
+		for(Shot s : bullets)
 			grph.draw(s.getShape());
-		}
 		for(Asteroid a : asteroids)
 			grph.draw(a.getShape());
 	}

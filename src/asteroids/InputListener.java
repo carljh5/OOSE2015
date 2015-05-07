@@ -27,28 +27,26 @@ public class InputListener extends ObjectHandler {
 		if(gaco.getInput().isKeyPressed(Input.KEY_SPACE))
 			decideSpaceAction();	
 		if(gaco.getInput().isKeyDown(Input.KEY_UP)) {
-			carl.thrust();
+			player.thrust();
 			sound.playThrust();
 		}
 		else 
 			sound.stopThrust();
 		if(gaco.getInput().isKeyDown(Input.KEY_LEFT))
-			carl.rotateLeft();
+			player.rotateLeft();
 		if(gaco.getInput().isKeyDown(Input.KEY_RIGHT))
-			carl.rotateRight();
+			player.rotateRight();
 	}
 	
 	/**
 	 * Method that moves all objects in the scene
 	 */
 	private void moveObjects() {
-		for(Shot s : bullets) {
+		for(Shot s : bullets)
 			s.move();
-		}
-		for(Asteroid a : asteroids) {
+		for(Asteroid a : asteroids)
 			a.move();
-		}
-		carl.move();
+		player.move();
 	}
 	
 	/**
@@ -56,28 +54,26 @@ public class InputListener extends ObjectHandler {
 	 */
 	private void decideSpaceAction(){
 		switch(GameMaster.getState()){
-			case 0: 
-				GameMaster.setState(1);
-				break;
-			case 1: 
-				// Only respond to input when the player is not overheated
-				if(!overHeat){
-					bullets.add(new Shot(carl.getX(), carl.getY(), carl.radians));
-					sound.playShoot();
-					if (heat + 15f <= maxHeat){
-						heat += 15f;
-					}
-					else{
-						heat = maxHeat;
-					}
-				}
-				break;
-			default:
-				// Reset the game and clear the screen (and Array Lists)
-				GameMaster.resetGame();
-				asteroids.clear();
-				bullets.clear();
-				break;
+		case 0: 
+			GameMaster.setState(1);
+			break;
+		case 1: 
+			// Only respond to input when the player is not overheated
+			if(!overHeat){
+				bullets.add(new Shot(player.getX(), player.getY(), player.radians));
+				sound.playShoot();
+				if (heat + 15f <= maxHeat)
+					heat += 15f;
+				else
+					heat = maxHeat;
+			}
+			break;
+		default:
+			// Reset the game and clear the screen (and Array Lists)
+			GameMaster.resetGame();
+			asteroids.clear();
+			bullets.clear();
+			break;
 		}
 	}
 }
