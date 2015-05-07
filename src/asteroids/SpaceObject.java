@@ -31,8 +31,8 @@ public class SpaceObject {
 	}
 	
 	/**
-	 * Sets the speed of the objects
-	 * @param s
+	 * Sets the speed of the objects.
+	 * @param s The amount of speed.
 	 */
 	public void setSpeed(float s) {
 		speed = s;
@@ -57,6 +57,7 @@ public class SpaceObject {
 	
 	/**
 	 * Sets the position of the object on the objects center x-coordinate.
+	 * @param x The x coordinate.
 	 */
 	public void setX(float x) {
 		shape.setCenterX(x);
@@ -71,6 +72,7 @@ public class SpaceObject {
 	}
 	/**
 	 * Sets the position of the object on the objects center y-coordinate.
+	 * @param y The y coordinate.
 	 */
 	public void setY(float y) {
 		shape.setCenterY(y);
