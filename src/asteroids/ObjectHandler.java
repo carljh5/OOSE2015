@@ -15,6 +15,8 @@ public class ObjectHandler {
 	protected static float maxHeat = 100f;
 	protected static boolean overHeat = false;
 	
+	protected SoundHandler sound = new SoundHandler();
+	
 	public void updateHeat() {
 		if (heat >= maxHeat){
 			overHeat = true;
@@ -126,6 +128,7 @@ public class ObjectHandler {
 		  if (asteroidRemove != null) {
 			  asteroids.remove(asteroidRemove);
 			  GameMaster.setScore(1);
+			  sound.playImpact();
 		  }
 		  if (bulletRemove != null)
 			  bullets.remove(bulletRemove);
@@ -166,6 +169,7 @@ public class ObjectHandler {
 					carl = new Player(carl.radians);
 					GameMaster.setLife(-1);
 					immuneTime = 0f;
+					sound.playDeath();
 				}
 			}
 		}

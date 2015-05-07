@@ -15,6 +15,7 @@ public class InputListener extends ObjectHandler {
 			if(!overHeat){
 				bullets.add(new Shot(carl.getX(), carl.getY(), carl.radians));
 				heat += 20f;
+				sound.playShoot();
 			}
 			if (GameMaster.getState() == 0) {
 				GameMaster.setState(1);
@@ -24,9 +25,15 @@ public class InputListener extends ObjectHandler {
 				asteroids.clear();
 				bullets.clear();
 			}
+			
 		}
-		if(gaco.getInput().isKeyDown(Input.KEY_UP))
+		if(gaco.getInput().isKeyDown(Input.KEY_UP)) {
 			carl.thrust();
+			sound.playThrust();
+		}
+		else {
+			sound.stopThrust();
+		}
 		if(gaco.getInput().isKeyDown(Input.KEY_LEFT))
 			carl.rotateLeft();
 		if(gaco.getInput().isKeyDown(Input.KEY_RIGHT))
