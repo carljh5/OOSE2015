@@ -49,12 +49,16 @@ public class Main extends BasicGame
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException
 	{
-		if (GameMaster.getState() == 0) {
-			gui.drawStartScene(g);
-		} else if (GameMaster.getState() == 2) {
-			gui.drawEndScene(g);
-		} else {
+		switch(GameMaster.getState()){
+		case 1:
 			gui.drawContent(g);
+			break;
+		case 2:			
+			gui.drawEndScene(g);
+			break;
+		default:
+			gui.drawStartScene(g);
+			break;
 		}
 	}
 
