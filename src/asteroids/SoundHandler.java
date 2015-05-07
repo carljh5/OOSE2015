@@ -9,6 +9,7 @@ public class SoundHandler {
 	private Sound thrust;
 	private Sound impact;
 	private Sound shoot;
+	private Sound overheat;
 	
 	public SoundHandler() {
 		try {
@@ -16,6 +17,7 @@ public class SoundHandler {
 			thrust = new Sound("sound/thrust.ogg");
 			impact = new Sound("sound/impact.ogg");
 			shoot = new Sound("sound/shoot.ogg");
+			overheat = new Sound("sound/overheat.ogg");
 		} catch (SlickException e) {
 			System.out.println("Cannot load death.ogg");
 		}
@@ -40,5 +42,14 @@ public class SoundHandler {
 	
 	public void playShoot() {
 		shoot.play();
+	}
+	
+	public void playOverheat() {
+		if(!overheat.playing())
+		overheat.loop();
+	}
+	
+	public void stopOverheat() {
+		overheat.stop();
 	}
 }

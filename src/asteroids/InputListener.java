@@ -28,6 +28,9 @@ public class InputListener extends ObjectHandler {
 						heat = maxHeat;
 					}
 				}
+				/*else {
+					sound.playOverheat();
+				}*/
 				break;
 			default:
 				GameMaster.resetGame();

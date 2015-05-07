@@ -139,10 +139,14 @@ public class ObjectHandler {
 	 */
 	
 	private void updateHeat() {
-		if (heat >= maxHeat)
+		if (heat >= maxHeat){
 			overHeat = true;
-		if (heat <= 0)
+			sound.playOverheat();
+		}
+		if (heat <= 0){
 			overHeat = false;
+			sound.stopOverheat();
+		}
 		if (!overHeat && heat-0.3f >=0)
 			heat -= 0.3f;
 		if (overHeat)
