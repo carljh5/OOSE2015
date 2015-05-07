@@ -128,7 +128,6 @@ public class ObjectHandler {
 	  }
 	}
 	
-	
 	/**
  	* Method to update the over heat boolean as well as decrease the heat over time
  	*/
