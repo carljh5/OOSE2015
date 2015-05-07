@@ -40,7 +40,6 @@ public class Main extends BasicGame
 			gui.drawStartScene(g);
 		} else if (GameMaster.getState() == 2) {
 			gui.drawEndScene(g);
-			GameMaster.setLife(3);
 		} else {
 			gui.drawContent(g);
 		}

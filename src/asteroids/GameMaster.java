@@ -55,6 +55,10 @@ public final class GameMaster {
 		level += 1;
 	}
 	
+	public static void setLevel(int i) {
+		level = i;
+	}
+	
 	public static int getLevel() {
 		return level;
 	}
