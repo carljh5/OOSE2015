@@ -12,18 +12,28 @@ public class InputListener extends ObjectHandler {
 	public void updateMove(GameContainer gaco) {
 		runObject();
 		if(gaco.getInput().isKeyPressed(Input.KEY_SPACE)){
-			if(!overHeat){
-				bullets.add(new Shot(carl.getX(), carl.getY(), carl.radians));
-				heat += 20f;
-				sound.playShoot();
-			}
-			if (GameMaster.getState() == 0) {
+
+			switch(GameMaster.getState()){
+			case 0: 
 				GameMaster.setState(1);
-			}
-			if (GameMaster.getState() == 2) {
+				break;
+			case 1: 
+				if(!overHeat){
+					bullets.add(new Shot(carl.getX(), carl.getY(), carl.radians));
+					sound.playShoot();
+					if (heat + 15f <= maxHeat){
+						heat += 15f;
+					}
+					else{
+						heat = maxHeat;
+					}
+				}
+				break;
+			default:
 				GameMaster.resetGame();
 				asteroids.clear();
 				bullets.clear();
+				break;
 			}
 			
 		}
