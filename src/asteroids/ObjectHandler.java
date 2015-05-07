@@ -12,7 +12,7 @@ public class ObjectHandler {
 	protected static float immuneTime = 0f;
 	
 	public void runObject() {
-		
+		// Only run the ObjectHandler when the game is in play mode (state 1)
 		if (GameMaster.getState() == 1) {
 			spawnNew();
 			spawnUpdate();
@@ -27,8 +27,16 @@ public class ObjectHandler {
 	 */	
 	private void spawnNew(){
 		if (newLevel){
+			/* The level is incremented and the bullets are cleared from the screen when
+			 * a new level is loaded.
+			 */
 			GameMaster.setLevel();
 			bullets.clear();
+			/* The amount of asteroids spawned is determined by the game level (level + 1).
+			 * The position of the newly spawned asteroids is determined by random floats.
+			 * Lastly, the asteroids are not allowed to spawn on top of the player, in 
+			 * order to not lose lives by random.
+			 */
 			for(int i = 0; i<GameMaster.getLevel()+1; i++){
 				Random rnd = new Random();
 				int width = GameMaster.getWidth();
@@ -44,25 +52,34 @@ public class ObjectHandler {
 				asteroids.add(new Asteroid(3,(float)(2*Math.PI/(GameMaster.getLevel()+1))*i,xPos,yPos));	
 			}
 		}
-			
 	}
 	
-
 	/**
 	 * 
 	 * Is called when the level is NOT empty / completed
 	 */
 	private void spawnUpdate(){
 	  if (asteroids.size() > 0){
+		  // If the size of the arraylist is bigger than 0, then the level is still going
 		  newLevel = false;
+		  // Initialise a temporary asteroid and bullet to be removed during collision
 		  Asteroid asteroidRemove = null;
 		  Shot bulletRemove = null;
 		  int spawnNum = 0;
+		  /*
+		   * The following statement checks if any bullet is colliding with any asteroid.
+		   * If true, bulletRemove will be set to the colliding bullet and asteroidRemove will
+		   * be set to the colliding asteroid
+		   */
 		  for (Asteroid i : asteroids){
 			  for (Shot j : bullets){
 				  if(i.isColliding(j.getShape())){
 					  asteroidRemove = i;
 					  bulletRemove = j;
+					  /*
+					   *  Decide how many asteroids should spawn, depending on the scale of the colliding 
+					   *  asteroid
+					   */
 						if (i.scale > 2) {
 							spawnNum = 3;
 						}
@@ -77,12 +94,18 @@ public class ObjectHandler {
 				  }
 			  } 
 		  }
+		  // Create new asteroids.
 		  for (int k = 0; k<spawnNum; k++){
 			  Random rand = new Random();
 			  float ranNum = rand.nextFloat();
+			  /*
+			   * Give the asteroid a random direction while making sure that two asteroids will not get
+			   * the same direction.
+			   */
 			  float degree = (float) ((ranNum*2*Math.PI/spawnNum)+(k*2*Math.PI/spawnNum));
 			  asteroids.add(new Asteroid(asteroidRemove.scale-1,degree,asteroidRemove.getX(),asteroidRemove.getY()));
 		  }
+		  // Remove the colliding asteroid and bullet from their array lists
 		  if (asteroidRemove != null) {
 			  asteroids.remove(asteroidRemove);
 			  GameMaster.setScore(1);
@@ -94,11 +117,16 @@ public class ObjectHandler {
 		  newLevel = true;
 	  }
 	  
-	  if (GameMaster.getLife() == -1) {
+	  // Set state 2 (game over) when the player loses all his life.
+	  if (GameMaster.getLife() < 0) {
 		  GameMaster.setState(2);
 	  }
 	}
 	
+	/*
+	 * 
+	 * Method to check whether the player is immune or not
+	 */
 	protected boolean isImmune() {
 		if (immuneTime > 2f) {
 			return false;
@@ -111,7 +139,8 @@ public class ObjectHandler {
 	
 	/**
 	 * 
-	 * Method for spawning player
+	 * Method for spawning player when he collides with an asteroid.
+	 * The player will gain immunity for a short amount of time when spawned
 	 */
 	private void spawnPlayer() {
 		if(!isImmune()) {
