@@ -12,7 +12,10 @@ public class InputListener extends ObjectHandler {
 	public void updateMove(GameContainer gaco) {
 		runObject();
 		if(gaco.getInput().isKeyPressed(Input.KEY_SPACE)){
-			bullets.add(new Shot(carl.getX(), carl.getY(), carl.radians));
+			if(!overHeat){
+				bullets.add(new Shot(carl.getX(), carl.getY(), carl.radians));
+				heat += 20f;
+			}
 			if (GameMaster.getState() == 0) {
 				GameMaster.setState(1);
 			}
