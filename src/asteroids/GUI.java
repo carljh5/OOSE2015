@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -20,10 +21,22 @@ public class GUI extends ObjectHandler {
 		
 	}
 	
+	private void drawHeatingBar(Graphics grph){
+		if (overHeat)
+			grph.setColor(Color.red);
+		else
+			grph.setColor(Color.white);
+		grph.drawString("HEAT O-METER", 2*GameMaster.getWidth()/5, 0);
+		grph.drawRect(2*GameMaster.getWidth()/5, GameMaster.getHeight()/20, GameMaster.getWidth()/5, GameMaster.getHeight()/20);
+		grph.fillRect(2*GameMaster.getWidth()/5, GameMaster.getHeight()/20, (heat/maxHeat)*GameMaster.getWidth()/5, GameMaster.getHeight()/20);
+		
+	}
+	
 	public void drawContent(Graphics grph) {
 		drawScore(grph);
 		drawPlayer(grph);
 		drawSpaceObjects(grph);
+		drawHeatingBar(grph);
 	}
 	
 	private void drawScore(Graphics grph) {

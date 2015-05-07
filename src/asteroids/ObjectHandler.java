@@ -15,18 +15,7 @@ public class ObjectHandler {
 	protected static float maxHeat = 100f;
 	protected static boolean overHeat = false;
 	
-	public void updateHeat() {
-		if (heat >= maxHeat){
-			overHeat = true;
-		}
-		if (heat <= 0){
-			overHeat = false;
-		}
-		if (heat > 0)
-			heat -= 0.5f;
-		System.out.println(heat);
-	}
-	
+
 	public void runObject() {
 		// Only run the ObjectHandler when the game is in play mode (state 1)
 		if (GameMaster.getState() == 1) {
@@ -138,6 +127,22 @@ public class ObjectHandler {
 	  if (GameMaster.getLife() < 0) {
 		  GameMaster.setState(2);
 	  }
+	}
+	
+	/*
+	 * 
+	 * Method to update the overheat boolean as well as decrease the heat over time
+	 */
+	
+	private void updateHeat() {
+		if (heat >= maxHeat)
+			overHeat = true;
+		if (heat <= 0)
+			overHeat = false;
+		if (!overHeat && heat-0.3f >=0)
+			heat -= 0.3f;
+		if (overHeat)
+			heat -= 0.5f;
 	}
 	
 	/*
