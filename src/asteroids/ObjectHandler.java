@@ -8,7 +8,7 @@ public class ObjectHandler {
 	private static boolean newLevel = true;
 	protected static ArrayList<Asteroid> asteroids = new ArrayList<Asteroid>();
 	protected static ArrayList<Shot> bullets = new ArrayList<Shot>();
-	protected static Player carl = new Player();
+	protected static Player player = new Player();
 	protected static float immuneTime = 0f;
 	protected static float heat;
 	protected static float maxHeat = 100f;
@@ -52,10 +52,10 @@ public class ObjectHandler {
 				float yPos = rnd.nextFloat()*height/4;
 				float xBound = GameMaster.getWidth()/15;
 				float yBound = GameMaster.getHeight()/15;
-				if (yPos < carl.getY()+yBound && yPos > carl.getY()-yBound)
-					yPos = carl.getY()-yBound;
-				if (xPos < carl.getX()+xBound && xPos > carl.getX()-xBound)
-					xPos = carl.getX()-xBound;
+				if (yPos < player.getY()+yBound && yPos > player.getY()-yBound)
+					yPos = player.getY()-yBound;
+				if (xPos < player.getX()+xBound && xPos > player.getX()-xBound)
+					xPos = player.getX()-xBound;
 				asteroids.add(new Asteroid(3,(float)(2*Math.PI/(GameMaster.getLevel()+1))*i,xPos,yPos));	
 			}
 		}
@@ -154,12 +154,11 @@ public class ObjectHandler {
 	 * @return Returns a boolean
 	 */
 	protected boolean isImmune() {
-		if (immuneTime > 2f) {
+		if (immuneTime > 2f) 
 			return false;
-		  }
-		  else {
-			  immuneTime += 0.005f;
-			  return true;
+		 else {
+			 immuneTime += 0.005f;
+			 return true;
 		  }
 	}
 	
@@ -170,8 +169,8 @@ public class ObjectHandler {
 	private void spawnPlayer() {
 		if(!isImmune()) {
 			for(Asteroid a : asteroids) {
-				if(a.isColliding(carl.getShape())) {
-					carl = new Player(carl.radians);
+				if(a.isColliding(player.getShape())) {
+					player = new Player(player.radians);
 					GameMaster.setLife(-1);
 					immuneTime = 0f;
 					sound.playDeath();
@@ -219,9 +218,9 @@ public class ObjectHandler {
 		if (object.mirrorLimit >= 2) {
 			object.mirrorLimit = 0;
 			return true;
-		} else {
+		} 
+		else 
 			return false;
-		}
 	}
 
 	/**
@@ -231,18 +230,13 @@ public class ObjectHandler {
 		Shot bullet = null;
 		for (Shot s : bullets) {
 			mirror(s);
-			if(shotDecay(s)) {
+			if(shotDecay(s)) 
 				bullet = s;
-			}
 		}
-		if (bullet != null) {
+		if (bullet != null) 
 			bullets.remove(bullet);
-			
-		}
-		for (Asteroid a : asteroids) {
+		for (Asteroid a : asteroids) 
 			mirror(a);
-		}
-		mirror(carl);
+		mirror(player);
 	}
-	
 }
