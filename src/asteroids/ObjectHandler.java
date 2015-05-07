@@ -133,7 +133,7 @@ public class ObjectHandler {
 	  }
 	}
 	
-	/*
+	/**
 	 * 
 	 * Method to update the overheat boolean as well as decrease the heat over time
 	 */
@@ -153,7 +153,7 @@ public class ObjectHandler {
 			heat -= 0.5f;
 	}
 	
-	/*
+	/**
 	 * 
 	 * Method to check whether the player is immune or not
 	 */
