@@ -19,6 +19,10 @@ public class Main extends BasicGame
 		super(gamename);
 	}
 	
+	/**
+	 * Main initializer. Sets height, width and life
+	 * @param Gamecontainer
+	 */
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 		GameMaster.setHeight(gc.getHeight());
@@ -28,20 +32,33 @@ public class Main extends BasicGame
 		inputListener = new InputListener();
 	}
 	
+	/**
+	 * Updates the game accordingly to inputs from InputListener
+	 * @param GameContainer
+	 */
 	@Override
 	public void update(GameContainer gc, int i) throws SlickException {
 		inputListener.updateMove(gc);
 	}
-
+	
+	/**
+	 * Renders the game and decides starting, ingame or game over scene
+	 * @param GameContainer
+	 * @param Graphics
+	 */
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException
 	{
-		if (GameMaster.getState() == 0) {
-			gui.drawStartScene(g);
-		} else if (GameMaster.getState() == 2) {
-			gui.drawEndScene(g);
-		} else {
+		switch(GameMaster.getState()){
+		case 1:
 			gui.drawContent(g);
+			break;
+		case 2:			
+			gui.drawEndScene(g);
+			break;
+		default:
+			gui.drawStartScene(g);
+			break;
 		}
 	}
 
