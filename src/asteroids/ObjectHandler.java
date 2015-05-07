@@ -14,8 +14,11 @@ public class ObjectHandler {
 	protected static float maxHeat = 100f;
 	protected static boolean overHeat = false;
 	protected SoundHandler sound = new SoundHandler();
-
-	public void runObject() {
+	
+	/**
+	 * Is called to run the methods of the ObjectHandler class.
+	 */
+	protected void runObject() {
 		// Only run the ObjectHandler when the game is in play mode (state 1)
 		if (GameMaster.getState() == 1) {
 			spawnNew();

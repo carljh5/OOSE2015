@@ -9,12 +9,20 @@ public class Player extends SpaceObject {
 	float radians;
 	float drag = 1.0075f;
 	
+	/**
+	 * The default constructor of the Player class.
+	 */
 	public Player() {
 		float[] points = {0, -5, 20, 0, 0, 5};
 		shape = new Polygon(points);
 		shape.setCenterX(GameMaster.getWidth()/2 - shape.getWidth()/2);
 		shape.setCenterY(GameMaster.getHeight()/2 - shape.getHeight()/2);
 	}
+	
+	/**
+	 * Alternative constructor of the Player class.
+	 * @param align The pointing direction of the Player in radians.
+	 */
 	
 	public Player(float align) {
 		float[] points = {0, -5, 20, 0, 0, 5};
