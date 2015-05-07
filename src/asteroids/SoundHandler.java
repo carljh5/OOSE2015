@@ -22,7 +22,7 @@ public class SoundHandler {
 			shoot = new Sound("sound/shoot.ogg");
 			overheat = new Sound("sound/overheat.ogg");
 		} catch (SlickException e) {
-			System.out.println("Cannot load death.ogg");
+			System.out.println("Cannot load sound");
 		}
 	}
 	
